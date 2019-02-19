@@ -3,5 +3,100 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/pagerootcolor"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="@dimen/y60">
+
+        <ImageView
+            android:layout_width="@dimen/x30"
+            android:layout_height="@dimen/y30"
+            android:scaleType="centerInside"
+            android:src="@drawable/dingwei"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x40"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="中航城市广场"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x90"/>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y600"
+        android:background="@drawable/rect_circle_x20"
+        android:layout_margin="@dimen/x10"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x40"
+                android:text="长按说话"/>
+            <TextView
+                android:layout_marginTop="@dimen/x20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索您要购买的商品"/>
+
+            <ImageView
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/x20"
+                android:layout_marginTop="@dimen/x20"/>
+
+            <ImageView
+                android:layout_width="@dimen/x300"
+                android:layout_height="@dimen/y300"
+                android:layout_marginTop="@dimen/x40"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y300"
+        android:layout_marginTop="@dimen/x20"
+        android:layout_margin="@dimen/x10"
+        android:background="@drawable/rect_circle_x20_white">
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x60"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/x200"
+                android:layout_height="@dimen/y200"
+                android:background="@color/colorAccent"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="扫码找货"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/x60"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/x200"
+                android:layout_height="@dimen/y200"
+                android:background="@color/colorAccent"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="一键下单"/>
+        </LinearLayout>
+    </FrameLayout>
 </LinearLayout>

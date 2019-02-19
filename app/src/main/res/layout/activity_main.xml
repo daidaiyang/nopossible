@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/pagerootcolor"
     android:layout_height="match_parent">
-
-    <include layout="@layout/layout_title"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/main_viewpager"

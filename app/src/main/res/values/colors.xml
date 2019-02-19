@@ -9,4 +9,7 @@
     <color name="tab_unchecked">#5e5e5d</color>
 
     <color name="titlecolor">#ffffff</color>
+    <color name="pagerootcolor">#eeeeee</color>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00ffffff</color>
 </resources>
