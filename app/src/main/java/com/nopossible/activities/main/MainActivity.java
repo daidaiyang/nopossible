@@ -67,6 +67,7 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         viewPager.setAdapter(new PagerAdapter(fragmentManager,fragments));
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(0);
+        //禁止ViewPager滑动
         viewPager.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

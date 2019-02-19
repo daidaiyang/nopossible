@@ -7,4 +7,6 @@
 
     <color name="tab_checked">#fcb902</color>
     <color name="tab_unchecked">#5e5e5d</color>
+
+    <color name="titlecolor">#ffffff</color>
 </resources>
