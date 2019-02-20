@@ -5,11 +5,16 @@
     <color name="colorAccent">#D81B60</color>
 
 
-    <color name="tab_checked">#fcb902</color>
+    <color name="tab_checked">#F5AA0F</color>
     <color name="tab_unchecked">#5e5e5d</color>
 
     <color name="titlecolor">#ffffff</color>
     <color name="pagerootcolor">#eeeeee</color>
     <color name="white">#ffffff</color>
     <color name="transparent">#00ffffff</color>
+
+    <color name="first_back">#FFFCEB</color>
+    <color name="record_color">#FEEE94</color>
+    <color name="circle_point">#FFC348</color>
+
 </resources>

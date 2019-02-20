@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nopossible.R;
 import com.nopossible.activities.main.MainActivity;
 import com.nopossible.mvp.MVPBaseActivity;
@@ -39,7 +40,7 @@ public class SplashActivity extends MVPBaseActivity<SplashContract.View, SplashP
 
     private void init() {
         Glide.with(this)
-                .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550579455560&di=bbb07866fc5b5997c361f1c64db73ec4&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201509%2F21%2F20150921015016_zfEk5.thumb.700_0.jpeg")
+                .load(R.drawable.splash)
                 .into(imageView);
 
         //创建Timer对象
