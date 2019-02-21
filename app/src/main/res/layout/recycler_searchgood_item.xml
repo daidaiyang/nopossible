@@ -1,60 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="@dimen/y150">
+    android:layout_height="wrap_content"
+    android:background="@color/first_back"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/root"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y238"
+        android:layout_marginLeft="@dimen/x19"
+        android:layout_marginRight="@dimen/x19"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/searchgood_item_goodimg"
+            android:layout_width="@dimen/x161"
+            android:layout_height="@dimen/x161"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x29" />
+
+        <TextView
+            android:id="@+id/searchgood_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x210"
+            android:layout_marginTop="@dimen/x47"
+            android:layout_marginRight="@dimen/x30"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="正宗重庆特产商用餐饮瓶装树上鲜餐厨花椒油正宗重庆特产商用餐饮瓶装树上鲜餐厨花椒油"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/textSize27" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/x209"
+            android:layout_marginBottom="@dimen/x48"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/searchgood_item_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="￥23.00"
+                android:textColor="@color/text_price"
+                android:textSize="@dimen/textSize31" />
+
+            <TextView
+                android:id="@+id/searchgood_item_standar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x19"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="400ml/瓶"
+                android:textColor="@color/text_black_66"
+                android:textSize="@dimen/textSize23" />
 
 
-    <ImageView
-        android:id="@+id/searchgood_item_goodimg"
-        android:layout_width="@dimen/x100"
-        android:layout_height="@dimen/x100"
-        android:layout_marginStart="@dimen/x40"
-        android:layout_marginBottom="@dimen/x20"
-        android:src="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/searchgood_item_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x20"
-        android:layout_marginBottom="@dimen/x20"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/searchgood_item_price"
-        app:layout_constraintStart_toEndOf="@+id/searchgood_item_goodimg" />
+        <ImageView
+            android:id="@+id/searchgood_item_addcart"
+            android:layout_width="@dimen/x84"
+            android:layout_height="@dimen/x99"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:paddingRight="@dimen/x29"
+            android:paddingBottom="@dimen/y44"
+            android:paddingTop="@dimen/x20"
+            android:paddingLeft="@dimen/x20"
+            android:src="@drawable/add_shopping" />
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/searchgood_item_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x20"
-        android:layout_marginBottom="@dimen/x20"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/searchgood_item_goodimg" />
-
-    <TextView
-        android:id="@+id/searchgood_item_standar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x24"
-        android:layout_marginBottom="@dimen/x20"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/searchgood_item_price" />
-
-    <ImageView
-        android:id="@+id/searchgood_item_addcart"
-        android:layout_width="@dimen/x40"
-        android:layout_height="@dimen/x40"
-        android:layout_marginEnd="@dimen/x20"
-        android:layout_marginBottom="@dimen/x20"
-        android:src="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

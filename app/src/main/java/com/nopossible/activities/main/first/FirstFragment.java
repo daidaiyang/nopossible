@@ -3,6 +3,7 @@ package com.nopossible.activities.main.first;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nopossible.R;
+import com.nopossible.activities.gooddetail.GooddetailActivity;
 import com.nopossible.adapter.SearchGoodItemAdapter;
 import com.nopossible.customview.CircleImageView;
 import com.nopossible.customview.WaveView;
@@ -47,7 +49,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
  * 邮箱 784787081@qq.com
  */
 
-public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPresenter> implements FirstContract.View, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPresenter> implements FirstContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, SearchGoodItemAdapter.OnItemClickListener {
 
 
     @BindView(R.id.first_location_icon)
@@ -91,13 +93,18 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
     ImageView firstRecordIconImg;
     @BindView(R.id.first_record_circle)
     CircleImageView firstRecordCircle;
+    @BindView(R.id.first_search_view)
+    LinearLayout firstSearchView;
+    @BindView(R.id.first_result_view)
+    LinearLayout firstResultView;
 
     private SearchGoodItemAdapter mAdapter;
     private List<String> mData;
     private Animation animation = null;
     private Animator animationJump = null;
 
-    private long downTime ;
+    private long downTime;
+    private RecognitionDialog dialog = null;
 
 
     @Nullable
@@ -111,7 +118,7 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
 
     private void initView() {
         animation = AnimationUtils.loadAnimation(getContext(), R.anim.image_scale);
-        animationJump = AnimatorInflater.loadAnimator(getContext(),R.animator.heart_jump);
+        animationJump = AnimatorInflater.loadAnimator(getContext(), R.animator.heart_jump);
         animationJump.setTarget(firstRecordCircle);
         firstBga.setDelegate(this);
         // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
@@ -137,13 +144,14 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
         firstBgaRecycle.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false));
         firstBgaRecycle.addItemDecoration(new RecycleViewDivider(getContext(),
-                LinearLayoutManager.VERTICAL, (int) getContext().getResources().getDimension(R.dimen.x40),
-                getContext().getResources().getColor(R.color.colorAccent)));
+                LinearLayoutManager.VERTICAL, (int) getContext().getResources().getDimension(R.dimen.x10),
+                getContext().getResources().getColor(R.color.first_back)));
         mData = new ArrayList<>();
         mData.add("");
         mData.add("");
         mData.add("");
         mAdapter = new SearchGoodItemAdapter(getContext(), mData);
+        mAdapter.setmListener(this);
         firstBgaRecycle.setAdapter(mAdapter);
         firstRecordIcon.setDuration(2000);
         firstRecordIcon.setInitialRadius(getContext().getResources().getDimension(R.dimen.x280) / 2.0f);
@@ -169,12 +177,34 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
                         animationJump.cancel();
                         firstRecordIconImg.clearAnimation();
                         firstRecordIcon.start();
-                        if (System.currentTimeMillis() - downTime>500){
-
+                        if (System.currentTimeMillis() - downTime > 500) {
+                            showDialog();
+                            new Handler()
+                                    .postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            firstSearchView.setVisibility(View.GONE);
+                                            firstResultView.setVisibility(View.VISIBLE);
+                                            dialog.cancel();
+                                        }
+                                    }, 3000);
                         }
                         break;
                 }
                 return true;
+            }
+        });
+    }
+
+    private void showDialog() {
+        if (dialog == null) {
+            dialog = new RecognitionDialog(getContext());
+        }
+        dialog.show();
+        dialog.setCloseListener(new RecognitionDialog.CloseListener() {
+            @Override
+            public void close() {
+                dialog.cancel();
             }
         });
     }
@@ -231,5 +261,17 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
         }, 3000);
 
         return true;
+    }
+
+    @Override
+    public void onItemClick(View v, int position) {
+        Intent intent = new Intent(getContext(),GooddetailActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onAddCartClick(View v, int position) {
+        Log.d("ssssssssssss","sssssssssssssssssssssss"+position);
     }
 }

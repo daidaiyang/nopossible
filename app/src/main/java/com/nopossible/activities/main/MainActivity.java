@@ -68,12 +68,12 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(0);
         //禁止ViewPager滑动
-        viewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
+//        viewPager.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                return true;
+//            }
+//        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

@@ -35,8 +35,10 @@ dependencies {
     //butterknife 注释
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    //
+    //bga-refreshlayout
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'cn.bingoogolapple:bga-refreshlayout:1.1.8'
+    //banner
+    implementation 'com.youth.banner:banner:1.4.10'  //最新版本
 }

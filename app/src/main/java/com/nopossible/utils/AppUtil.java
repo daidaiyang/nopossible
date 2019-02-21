@@ -7,6 +7,7 @@ public class AppUtil {
 
 
 
+
     //安卓中像素px和dp的转换：
     public static int Dp2Px(Context context, float dp) {
         final float scale = context.getResources().getDisplayMetrics().density; //当前屏幕密度因子

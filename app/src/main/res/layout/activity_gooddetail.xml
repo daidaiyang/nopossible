@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
+    <include layout="@layout/include_title"/>
+
+    <ScrollView
+        android:background="@color/first_back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.youth.banner.Banner
+                android:id="@+id/gooddetail_banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y703"
+                app:indicator_width="@dimen/x92"
+                app:indicator_height="@dimen/x46"
+                app:banner_default_image="@color/colorPrimary" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y210"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/gooddetail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x30"
+                    android:layout_marginTop="@dimen/x36"
+                    android:layout_marginRight="@dimen/x30"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:text="峨眉山万弗藤椒油400ml四川特产万弗特麻青花椒调料"
+                    android:textSize="@dimen/textSize31"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gooddetail_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/x25"
+                    android:layout_marginBottom="@dimen/x36"
+                    android:includeFontPadding="false"
+                    android:text="￥38.00"
+                    android:textColor="@color/text_price"
+                    android:textSize="@dimen/textSize35"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gooddetail_standar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginBottom="@dimen/x42"
+                    android:layout_toRightOf="@id/gooddetail_price"
+                    android:includeFontPadding="false"
+                    android:text="400ml/瓶"
+                    android:textColor="@color/text_black_66"
+                    android:textSize="@dimen/textSize23" />
+
+                <TextView
+                    android:id="@+id/gooddetail_addcart"
+                    android:layout_width="@dimen/x180"
+                    android:layout_height="@dimen/y56"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="@dimen/x29"
+                    android:layout_marginBottom="@dimen/x27"
+                    android:background="@drawable/rect_circle_x28_0f"
+                    android:gravity="center"
+                    android:text="加入购物车"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y250"
+                android:layout_marginTop="@dimen/x15"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x19"
+                    android:layout_marginTop="@dimen/x25"
+                    android:includeFontPadding="false"
+                    android:text="商品参数:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize27" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x2"
+                    android:layout_marginTop="@dimen/x26"
+                    android:layout_marginBottom="@dimen/x29"
+                    android:background="@color/line_f2" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x19"
+                        android:includeFontPadding="false"
+                        android:text="品牌名称:"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/textSize23" />
+
+                    <TextView
+                        android:id="@+id/gooddetail_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x247"
+                        android:includeFontPadding="false"
+                        android:text="万福"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/textSize23" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x22">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x19"
+                        android:includeFontPadding="false"
+                        android:text="配料表:"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/textSize23" />
+
+                    <TextView
+                        android:id="@+id/gooddetail_peiliao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x247"
+                        android:includeFontPadding="false"
+                        android:text="万福"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/textSize23" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x22">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x19"
+                        android:includeFontPadding="false"
+                        android:text="生产许可证编号:"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/textSize23" />
+
+                    <TextView
+                        android:id="@+id/gooddetail_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x247"
+                        android:includeFontPadding="false"
+                        android:text="万福"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/textSize23" />
+                </RelativeLayout>
+
+                <WebView
+                    android:id="@+id/gooddetail_webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y600"
+                    android:layout_marginTop="@dimen/x15" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
