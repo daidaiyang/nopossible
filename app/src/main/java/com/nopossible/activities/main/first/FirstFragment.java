@@ -30,6 +30,7 @@ import com.nopossible.activities.gooddetail.GooddetailActivity;
 import com.nopossible.adapter.SearchGoodItemAdapter;
 import com.nopossible.customview.CircleImageView;
 import com.nopossible.customview.WaveView;
+import com.nopossible.dialog.RecognitionDialog;
 import com.nopossible.mvp.MVPBaseFragment;
 import com.nopossible.utils.RecycleViewDivider;
 
