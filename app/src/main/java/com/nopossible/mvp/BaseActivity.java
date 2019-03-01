@@ -1,4 +1,6 @@
 package com.nopossible.mvp;
 
-public class BaseActivity {
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+
+public class BaseActivity extends RxAppCompatActivity {
 }

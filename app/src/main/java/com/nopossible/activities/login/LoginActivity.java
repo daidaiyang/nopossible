@@ -65,6 +65,9 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
             case R.id.title_back:
                 break;
             case R.id.login_login:
+                String userName = loginUsername.getText().toString();
+                String password = loginPassword.getText().toString();
+                mPresenter.login(userName,password);
                 break;
             case R.id.login_regist:
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
