@@ -2,10 +2,9 @@ package com.nopossible.entity.api;
 
 import com.nopossible.entity.HttpPostService;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
+import com.ygs.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
+import com.ygs.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Retrofit;

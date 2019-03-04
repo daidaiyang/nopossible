@@ -1,11 +1,10 @@
 package com.nopossible.activities.login;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.nopossible.entity.api.UserLoginApi;
 import com.nopossible.mvp.BasePresenterImpl;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
+import com.ygs.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 
 import java.util.HashMap;
 import java.util.Map;

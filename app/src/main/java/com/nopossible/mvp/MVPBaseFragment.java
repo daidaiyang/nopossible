@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpManager;
+import com.ygs.rxretrofitlibrary.retrofit_rx.http.HttpManager;
 
 import java.lang.reflect.ParameterizedType;
 

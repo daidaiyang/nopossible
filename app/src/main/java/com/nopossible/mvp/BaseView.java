@@ -3,7 +3,7 @@ package com.nopossible.mvp;
 import android.content.Context;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpManager;
+import com.ygs.rxretrofitlibrary.retrofit_rx.http.HttpManager;
 
 /**
  * MVPPlugin

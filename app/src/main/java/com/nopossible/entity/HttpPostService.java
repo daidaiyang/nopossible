@@ -1,6 +1,6 @@
 package com.nopossible.entity;
 
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseResultEntity;
+import com.ygs.rxretrofitlibrary.retrofit_rx.Api.BaseResultEntity;
 
 import java.util.Map;
 
