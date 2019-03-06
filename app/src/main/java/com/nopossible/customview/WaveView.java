@@ -21,7 +21,6 @@ import java.util.List;
 
 /**
  * 水波纹特效
- * Created by fbchen2 on 2016/5/25.
  */
 public class WaveView extends View {
     private float mInitialRadius;   // 初始波纹半径

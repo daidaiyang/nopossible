@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 /**
  * SharedPreference操作类
- * Created by devilwwj on 16/1/23.
  */
 public class SpUtils {
     private static final String spFileName = "app";

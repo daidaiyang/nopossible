@@ -26,11 +26,8 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
     };
 
     public void login(String name, String password){
-        Map<String,String> map = new HashMap<>();
-        map.put("phone",name);
-        map.put("pwd",password);
         UserLoginApi userLoginApi = new UserLoginApi(loginListener,mView.getThis());
-        userLoginApi.setParams(map);
+        userLoginApi.setParams("223456","13888888888","123456");
         mView.getManager().doHttpDeal(userLoginApi);
     }
 }

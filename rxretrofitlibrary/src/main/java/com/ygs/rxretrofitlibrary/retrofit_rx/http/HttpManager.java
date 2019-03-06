@@ -1,8 +1,11 @@
 package com.ygs.rxretrofitlibrary.retrofit_rx.http;
 
 
+import android.os.Build;
 import android.util.Log;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.trello.rxlifecycle.android.ActivityEvent;
 import com.ygs.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
 import com.ygs.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
@@ -11,11 +14,21 @@ import com.ygs.rxretrofitlibrary.retrofit_rx.http.cookie.CookieInterceptor;
 import com.ygs.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 import com.ygs.rxretrofitlibrary.retrofit_rx.subscribers.ProgressSubscriber;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okio.Buffer;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
