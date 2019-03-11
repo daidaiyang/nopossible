@@ -4,6 +4,9 @@
     package="com.nopossible">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".MyApplication"
@@ -20,14 +23,19 @@
         <activity android:name=".activities.main.MainActivity" />
         <activity android:name=".activities.gooddetail.GooddetailActivity"/>
         <activity android:name=".activities.login.LoginActivity">
+
+        </activity>
+        <activity android:name=".activities.register.RegisterActivity"/>
+        <activity android:name=".activities.findpass.FindpassActivity"/>
+        <activity android:name=".activities.goodapply.GoodapplyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.register.RegisterActivity"/>
-        <activity android:name=".activities.findpass.FindpassActivity"/>
+        <activity android:name=".activities.onekeysaveorder.OnekeysaveorderActivity">
+        </activity>
     </application>
 
 </manifest>

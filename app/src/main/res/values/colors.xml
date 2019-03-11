@@ -18,7 +18,8 @@
     <color name="circle_point">#FFC348</color>
     <color name="searchresult_back">#F5AA0F</color>
     <color name="line_f2">#FFF2F2F2</color>
-
+    <color name="line_dd">#dddddd</color>
+    <color name="back_ceb">#FFFCEB</color>
 
 
     <color name="text_black">#000000</color>

@@ -5,65 +5,73 @@
     android:background="@color/first_back"
     android:orientation="horizontal">
 
-    <RelativeLayout
-        android:id="@+id/shengou_root"
-        android:layout_centerInParent="true"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y238"
-        android:layout_marginLeft="@dimen/x19"
-        android:layout_marginRight="@dimen/x19"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:id="@+id/root"
+        android:layout_marginLeft="@dimen/x15"
+        android:layout_marginRight="@dimen/x15"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/shengou_item_goodimg"
-            android:layout_width="@dimen/x161"
-            android:layout_height="@dimen/x161"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x29" />
+        <RelativeLayout
+            android:id="@+id/shengou_root"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y238"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/x19"
+            android:layout_marginRight="@dimen/x19"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/shengou_item_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x210"
-            android:layout_marginTop="@dimen/x47"
-            android:layout_marginRight="@dimen/x30"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="正宗重庆特产商用餐饮瓶装树上鲜餐厨花椒油正宗重庆特产商用餐饮瓶装树上鲜餐厨花椒油"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/textSize27" />
+            <ImageView
+                android:id="@+id/shengou_item_goodimg"
+                android:layout_width="@dimen/x161"
+                android:layout_height="@dimen/x161"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x29" />
 
-       <TextView
-           android:id="@+id/shengou_item_have"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="已有324人通神"
-           android:layout_alignParentBottom="true"
-           android:layout_alignParentEnd="true"
-           android:layout_marginRight="@dimen/x154"
-           android:layout_marginBottom="@dimen/x44"
-           android:includeFontPadding="false"
-           />
+            <TextView
+                android:id="@+id/shengou_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x210"
+                android:layout_marginTop="@dimen/x47"
+                android:layout_marginRight="@dimen/x30"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="正宗重庆特产商用餐饮瓶装树上鲜餐厨花椒油正宗重庆特产商用餐饮瓶装树上鲜餐厨花椒油"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/textSize27" />
 
-        <TextView
-            android:id="@+id/shengou_item_status"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/x54"
-            android:paddingLeft="@dimen/x18"
-            android:paddingRight="@dimen/x18"
-            android:paddingTop="@dimen/x14"
-            android:paddingBottom="@dimen/x14"
-            android:background="@drawable/rect_circle_x27_0f"
-            android:textSize="@dimen/textSize27"
-            android:layout_marginBottom="@dimen/x33"
-            android:layout_marginRight="@dimen/x29"
-            android:includeFontPadding="false"
-            android:textColor="@color/white"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:text="已申"
-            />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/shengou_item_have"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="@dimen/x154"
+                android:layout_marginBottom="@dimen/x44"
+                android:includeFontPadding="false"
+                android:text="已有324人同申" />
+
+            <TextView
+                android:id="@+id/shengou_item_status"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/x54"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="@dimen/x29"
+                android:layout_marginBottom="@dimen/x33"
+                android:background="@drawable/rect_circle_x27_0f"
+                android:includeFontPadding="false"
+                android:paddingLeft="@dimen/x18"
+                android:paddingTop="@dimen/x14"
+                android:paddingRight="@dimen/x18"
+                android:paddingBottom="@dimen/x14"
+                android:text="已申"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize27" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

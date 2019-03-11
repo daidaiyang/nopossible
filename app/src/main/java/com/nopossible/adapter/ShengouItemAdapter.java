@@ -1,16 +1,19 @@
 package com.nopossible.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nopossible.R;
+import com.nopossible.customview.ShadowDrawable;
 
 import java.util.List;
 
@@ -43,6 +46,11 @@ public class ShengouItemAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
             ViewHolder holder = (ViewHolder) viewHolder;
+        ShadowDrawable.setShadowDrawable(holder.root, Color.parseColor("#ffffff"),
+                (int) mContext.getResources().getDimension(R.dimen.x20),
+                Color.parseColor("#337C7C7C"),
+                (int) mContext.getResources().getDimension(R.dimen.x15),
+                0, 0);
     }
 
     @Override
@@ -61,6 +69,8 @@ public class ShengouItemAdapter extends RecyclerView.Adapter {
         TextView shengouItemStatus;
         @BindView(R.id.shengou_root)
         RelativeLayout shengouRoot;
+        @BindView(R.id.root)
+        LinearLayout root;
         private OnItemClickListener mClickListener;
 
         ViewHolder(View view,OnItemClickListener mClickListener) {

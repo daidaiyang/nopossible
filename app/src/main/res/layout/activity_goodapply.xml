@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y170"
+        android:orientation="vertical"
+        android:background="@color/text_black_0f">
+        <TextView
+            android:id="@+id/goodapply_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize42"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/x24"
+            android:layout_marginTop="@dimen/x35"
+            android:includeFontPadding="false"
+            android:text="共3件"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:layout_marginLeft="@dimen/x24"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize27"
+            android:text="申购中的商品"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/goodapply_empty"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/back_ceb">
+        <include layout="@layout/include_empty"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/goodapply_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/back_ceb"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/goodapply_recy"
+            android:layout_marginTop="@dimen/x10"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        
+        <TextView
+            android:id="@+id/goodapply_apply"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x85"
+            android:text="我要申购"
+            android:textSize="@dimen/textSize31"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@color/text_black_0f"/>
+
+    </LinearLayout>
+
+</LinearLayout>

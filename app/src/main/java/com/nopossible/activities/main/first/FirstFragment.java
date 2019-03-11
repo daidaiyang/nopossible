@@ -131,17 +131,6 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
         firstBga.setIsShowLoadingMoreView(false);
         // 设置正在加载更多时的文本
         refreshViewHolder.setLoadingMoreText("加载中...");
-        // 设置整个加载更多控件的背景颜色资源 id
-//        refreshViewHolder.setLoadMoreBackgroundColorRes(loadMoreBackgroundColorRes);
-        // 设置整个加载更多控件的背景 drawable 资源 id
-//        refreshViewHolder.setLoadMoreBackgroundDrawableRes(loadMoreBackgroundDrawableRes);
-        // 设置下拉刷新控件的背景颜色资源 id
-//        refreshViewHolder.setRefreshViewBackgroundColorRes(refreshViewBackgroundColorRes);
-        // 设置下拉刷新控件的背景 drawable 资源 id
-//        refreshViewHolder.setRefreshViewBackgroundDrawableRes(refreshViewBackgroundDrawableRes);
-        // 设置自定义头部视图（也可以不用设置）     参数1：自定义头部视图（例如广告位）， 参数2：上拉加载更多是否可用
-//        firstBga.setCustomHeaderView(mBanner, false);
-        // 可选配置  -------------END
         firstBgaRecycle.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false));
         firstBgaRecycle.addItemDecoration(new RecycleViewDivider(getContext(),

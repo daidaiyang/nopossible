@@ -51,5 +51,6 @@ dependencies {
     implementation 'cn.bingoogolapple:bga-refreshlayout:1.1.8'
     //banner
     implementation 'com.youth.banner:banner:1.4.10'
-    implementation project(path: ':rxretrofitlibrary')  //最新版本
+    //zxing
+    implementation project(path: ':rxretrofitlibrary')
 }
