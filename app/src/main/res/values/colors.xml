@@ -12,22 +12,28 @@
     <color name="pagerootcolor">#eeeeee</color>
     <color name="white">#ffffff</color>
     <color name="transparent">#00ffffff</color>
+    <color name="transparent5">#80000000</color>
 
     <color name="first_back">#FFFCEB</color>
     <color name="record_color">#FEEE94</color>
     <color name="circle_point">#FFC348</color>
     <color name="searchresult_back">#F5AA0F</color>
     <color name="line_f2">#FFF2F2F2</color>
+    <color name="line_ee">#EEEEEE</color>
     <color name="line_dd">#dddddd</color>
     <color name="back_ceb">#FFFCEB</color>
 
 
     <color name="text_black">#000000</color>
     <color name="text_black_33">#333333</color>
+    <color name="text_black_31">#313131</color>
     <color name="text_black_66">#666666</color>
+    <color name="text_black_69">#696969</color>
     <color name="text_black_cc">#cccccc</color>
     <color name="text_black_0f">#F5AA0F</color>
     <color name="text_black_99">#999999</color>
     <color name="text_price">#FF0000</color>
+    <color name="text_price0c">#F54E0C</color>
+    <color name="text_black_50b">#0F050B</color>
 
 </resources>

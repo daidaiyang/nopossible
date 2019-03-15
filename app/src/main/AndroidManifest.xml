@@ -19,6 +19,11 @@
         <activity
             android:name=".activities.splash.SplashActivity"
             android:label="@string/title_activity_first">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activities.main.MainActivity" />
         <activity android:name=".activities.gooddetail.GooddetailActivity"/>
@@ -28,14 +33,12 @@
         <activity android:name=".activities.register.RegisterActivity"/>
         <activity android:name=".activities.findpass.FindpassActivity"/>
         <activity android:name=".activities.goodapply.GoodapplyActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.onekeysaveorder.OnekeysaveorderActivity">
         </activity>
+        <activity android:name=".activities.myapply.MyapplyActivity">
+        </activity>
+        <activity android:name=".activities.confirmorder.ConfirmorderActivity"/>
     </application>
 
 </manifest>

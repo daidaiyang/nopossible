@@ -3,11 +3,109 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y84">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/textSize35"
+            android:textColor="@color/text_black"
+            android:textStyle="bold"
+            android:text="购物清单"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="购物"/>
+        <TextView
+            android:id="@+id/cart_manage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize35"
+            android:textColor="@color/text_black"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x30"
+            android:text="管理"
+            />
+    </RelativeLayout>
+
+    <include
+        layout="@layout/include_empty_cart"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cart_recy"
+        android:background="@color/back_ceb"
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/x20"
+        android:paddingLeft="@dimen/x15"
+        android:paddingRight="@dimen/x15"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y84"
+        android:background="@color/back_ceb">
+        <CheckBox
+            android:id="@+id/cart_all"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/y35"
+            android:button="@null"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x27"
+            android:background="@drawable/selector_checkbox_circle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize25"
+            android:textColor="@color/text_black_69"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x77"
+            android:text="全选"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:layout_marginRight="@dimen/x234"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/x23"
+                android:textColor="@color/text_black"
+                android:includeFontPadding="false"
+                android:text="合计:"/>
+
+            <TextView
+                android:id="@+id/cart_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_price"
+                android:textSize="@dimen/textSize31"
+                android:includeFontPadding="false"
+                android:text="￥363.22"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/cart_account"
+            android:layout_width="@dimen/x211"
+            android:layout_height="match_parent"
+            android:background="@color/text_black_0f"
+            android:layout_alignParentEnd="true"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/x31"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="结算"
+            />
+
+    </RelativeLayout>
+
+
 </LinearLayout>

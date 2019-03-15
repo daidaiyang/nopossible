@@ -1,6 +1,7 @@
 package com.nopossible.activities.onekeysaveorder;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nopossible.R;
+import com.nopossible.activities.myapply.MyapplyActivity;
 import com.nopossible.adapter.OneKeyLeftItemAdapter;
 import com.nopossible.adapter.OneKeyRightItemAdapter;
 import com.nopossible.mvp.MVPBaseActivity;
