@@ -1,6 +1,7 @@
 package com.nopossible.activities.main.order;
 
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.nopossible.R;
+import com.nopossible.activities.confirmreceipt.ConfirmreceiptActivity;
 import com.nopossible.adapter.MineOrderManagerAdapter;
 import com.nopossible.mvp.MVPBaseFragment;
 
@@ -33,7 +35,7 @@ import butterknife.Unbinder;
  * 邮箱 784787081@qq.com
  */
 
-public class OrderFragment extends MVPBaseFragment<OrderContract.View, OrderPresenter> implements OrderContract.View {
+public class OrderFragment extends MVPBaseFragment<OrderContract.View, OrderPresenter> implements OrderContract.View, MineOrderManagerAdapter.OnItemClickListener {
 
     @BindView(R.id.ordermanage_search)
     ImageView ordermanageSearch;
@@ -84,6 +86,7 @@ public class OrderFragment extends MVPBaseFragment<OrderContract.View, OrderPres
         mAdapter = new MineOrderManagerAdapter(getContext(),mData);
         ordermanageRecy.setLayoutManager(new LinearLayoutManager(getContext()));
         ordermanageRecy.setAdapter(mAdapter);
+        mAdapter.setItemClickListener(this);
     }
 
     @Override
@@ -150,5 +153,22 @@ public class OrderFragment extends MVPBaseFragment<OrderContract.View, OrderPres
                 ordermanageFinish.setCompoundDrawables(null,null,null,drawable);
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(View v, int position) {
+
+    }
+
+    @Override
+    public void onAgainClick(View v, int position) {
+
+    }
+
+    @Override
+    public void onOperationClick(View v, int position) {
+        Intent intent = new Intent(getContext(), ConfirmreceiptActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

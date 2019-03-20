@@ -1,6 +1,7 @@
 package com.nopossible.activities.main.mine;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nopossible.R;
+import com.nopossible.activities.minegroup.myapply.MyapplyActivity;
+import com.nopossible.activities.minegroup.myinfo.MyinfoActivity;
+import com.nopossible.activities.minegroup.mymessage.MymessageActivity;
+import com.nopossible.activities.minegroup.myscore.MyscoreActivity;
+import com.nopossible.activities.minegroup.mysetting.MysettingActivity;
 import com.nopossible.mvp.MVPBaseFragment;
 
 import butterknife.BindView;
@@ -73,14 +79,29 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.mine_message:
+                Intent messageIntent = new Intent(getContext(), MymessageActivity.class);
+                messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(messageIntent);
                 break;
             case R.id.mine_setting:
+                Intent settingIntent = new Intent(getContext(), MysettingActivity.class);
+                settingIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(settingIntent);
                 break;
             case R.id.mine_info:
+                Intent infoIntent = new Intent(getContext(), MyinfoActivity.class);
+                infoIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(infoIntent);
                 break;
             case R.id.mine_score:
+                Intent scoreIntent = new Intent(getContext(), MyscoreActivity.class);
+                scoreIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(scoreIntent);
                 break;
             case R.id.mine_apply:
+                Intent applyIntent = new Intent(getContext(), MyapplyActivity.class);
+                applyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(applyIntent);
                 break;
             case R.id.mine_address:
                 break;

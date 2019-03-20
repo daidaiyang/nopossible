@@ -39,6 +39,12 @@
         <activity android:name=".activities.myapply.MyapplyActivity">
         </activity>
         <activity android:name=".activities.confirmorder.ConfirmorderActivity"/>
+        <activity android:name=".activities.minegroup.myinfo.MyinfoActivity"/>
+        <activity android:name=".activities.minegroup.myscore.MyscoreActivity"/>
+        <activity android:name=".activities.minegroup.myapply.MyapplyActivity"/>
+        <activity android:name=".activities.minegroup.mysetting.MysettingActivity"/>
+        <activity android:name=".activities.minegroup.mymessage.MymessageActivity"/>
+        <activity android:name=".activities.confirmreceipt.ConfirmreceiptActivity"/>
     </application>
 
 </manifest>
