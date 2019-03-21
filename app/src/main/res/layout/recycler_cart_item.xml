@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/root"
+    android:background="@drawable/rect_circle_x19_white">
+
+    <CheckBox
+        android:id="@+id/cart_item_check"
+        android:layout_width="@dimen/x35"
+        android:layout_height="@dimen/y35"
+        android:layout_marginLeft="@dimen/x27"
+        android:layout_marginTop="@dimen/x102"
+        android:background="@drawable/selector_checkbox_circle"
+        android:button="@null" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x88"
+        android:layout_marginTop="@dimen/x38"
+        android:layout_marginRight="@dimen/x30"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/cart_item_img"
+            android:layout_width="@dimen/x161"
+            android:layout_height="@dimen/y161"
+            android:src="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20">
+
+            <TextView
+                android:id="@+id/cart_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x9"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:text="正宗重庆特产商用餐饮瓶装树上鲜餐厨花椒油"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/textSize27" />
+
+            <TextView
+                android:id="@+id/cart_item_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y99"
+                android:text="￥12.30"
+                android:includeFontPadding="false"
+                android:textColor="@color/text_price"
+                android:textSize="@dimen/textSize31" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x40"
+        android:layout_marginTop="@dimen/y218">
+
+        <TextView
+            android:id="@+id/heji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x269"
+            android:includeFontPadding="false"
+            android:text="合计"
+            android:textColor="@color/text_price0c"
+            android:textSize="@dimen/textSize27" />
+
+        <TextView
+            android:id="@+id/cart_item_allprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/heji"
+            android:includeFontPadding="false"
+            android:text="￥36.60"
+            android:textColor="@color/text_price0c"
+            android:textSize="@dimen/textSize27" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginLeft="@dimen/x483">
+            <ImageView
+                android:id="@+id/cart_item_sub"
+                android:layout_width="@dimen/x42"
+                android:layout_height="@dimen/y42"
+                android:src="@drawable/sub_not"/>
+            <TextView
+                android:id="@+id/cart_item_num"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/textSize31"
+                android:text="1"/>
+            <ImageView
+                android:id="@+id/cart_item_plus"
+                android:layout_width="@dimen/x42"
+                android:layout_height="@dimen/y42"
+                android:src="@drawable/plus"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

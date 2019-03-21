@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckBox
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x150"
+    android:id="@+id/myapply_typedialog_check"
+    android:text="粮油"
+    android:button="@null"
+    android:layout_marginTop="@dimen/x30"
+    android:gravity="center"
+    android:textSize="@dimen/textSize27"
+    android:textColor="@color/selector_text_00ff"
+    android:background="@drawable/selector_checkbox_x10_ee0f"
+    android:layout_height="@dimen/y65"/>

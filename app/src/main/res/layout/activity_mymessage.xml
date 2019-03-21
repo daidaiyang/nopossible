@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/back_ceb">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y115"
+            android:layout_marginTop="@dimen/x40"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_marginRight="@dimen/x29"
+            android:background="@drawable/rect_circle_x10_0f">
+           
+            <ImageView
+                android:layout_width="@dimen/x96"
+                android:layout_height="@dimen/y96"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x13"
+                android:src="@drawable/message_sys"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize31"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x117"
+                android:text="系统通知"/>
+            
+            <TextView
+                android:layout_width="@dimen/x31"
+                android:layout_height="@dimen/y31"
+                android:gravity="center"
+                android:textSize="@dimen/textSize23"
+                android:includeFontPadding="false"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x47"
+                android:textColor="@color/white"
+                android:background="@drawable/circle_point_33"
+                android:text="2"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y115"
+            android:layout_marginTop="@dimen/x23"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_marginRight="@dimen/x29"
+            android:background="#00CC99">
+            <ImageView
+                android:layout_width="@dimen/x96"
+                android:layout_height="@dimen/y96"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x13"
+                android:src="@drawable/message_new"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize31"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x117"
+                android:text="新品上架"/>
+
+            <TextView
+                android:layout_width="@dimen/x31"
+                android:layout_height="@dimen/y31"
+                android:gravity="center"
+                android:textSize="@dimen/textSize23"
+                android:includeFontPadding="false"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x47"
+                android:textColor="@color/white"
+                android:background="@drawable/circle_point_33"
+                android:text="2"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y115"
+            android:layout_marginTop="@dimen/x40"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_marginRight="@dimen/x29"
+            android:background="#3399FF">
+
+            <ImageView
+                android:layout_width="@dimen/x96"
+                android:layout_height="@dimen/y96"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x13"
+                android:src="@drawable/message_cuxiao"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize31"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x117"
+                android:text="商品促销活动"/>
+
+            <TextView
+                android:layout_width="@dimen/x31"
+                android:layout_height="@dimen/y31"
+                android:gravity="center"
+                android:textSize="@dimen/textSize23"
+                android:includeFontPadding="false"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x47"
+                android:textColor="@color/white"
+                android:background="@drawable/circle_point_33"
+                android:text="2"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y115"
+            android:layout_marginTop="@dimen/x40"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_marginRight="@dimen/x29"
+            android:background="#FF8933">
+
+            <ImageView
+                android:layout_width="@dimen/x96"
+                android:layout_height="@dimen/y96"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x13"
+                android:src="@drawable/message_tui"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize31"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x117"
+                android:text="优质商品推荐"/>
+
+            <TextView
+                android:layout_width="@dimen/x31"
+                android:layout_height="@dimen/y31"
+                android:gravity="center"
+                android:textSize="@dimen/textSize23"
+                android:includeFontPadding="false"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x47"
+                android:textColor="@color/white"
+                android:background="@drawable/circle_point_33"
+                android:text="2"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

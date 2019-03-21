@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/myapply_selectType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/x30"
+                android:paddingTop="@dimen/x35"
+                android:paddingRight="@dimen/x30"
+                android:paddingBottom="@dimen/x15">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:includeFontPadding="false"
+                    android:text="选择品类"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize23" />
+
+                <ImageView
+                    android:layout_width="@dimen/x19"
+                    android:layout_height="@dimen/x19"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/x30"
+                    android:src="@drawable/jiantou_you" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/myapply_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="如果没有您要找品类，请直接输入"
+                android:includeFontPadding="false"
+                android:paddingLeft="@dimen/x30"
+                android:paddingTop="@dimen/x15"
+                android:paddingRight="@dimen/x30"
+                android:paddingBottom="@dimen/x18"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_black_cc"
+                android:textSize="@dimen/textSize27" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x2"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginRight="@dimen/x30"
+                android:background="@color/line_f2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/x30"
+                android:paddingTop="@dimen/x35"
+                android:paddingRight="@dimen/x30"
+                android:paddingBottom="@dimen/x15">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:includeFontPadding="false"
+                    android:text="输入品牌"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize23" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/myapply_brand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="请输入品牌"
+                android:includeFontPadding="false"
+                android:paddingLeft="@dimen/x30"
+                android:paddingTop="@dimen/x15"
+                android:paddingRight="@dimen/x30"
+                android:paddingBottom="@dimen/x18"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_black_cc"
+                android:textSize="@dimen/textSize27" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x2"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginRight="@dimen/x30"
+                android:background="@color/line_f2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginTop="@dimen/x35"
+                android:layout_marginBottom="@dimen/x30"
+                android:text="上传商品图片(最多5张)"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x23" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/myapply_recy"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y125"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginRight="@dimen/x30" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginTop="@dimen/x15"
+                android:layout_marginBottom="@dimen/x15"
+                android:textSize="@dimen/x19"
+                android:includeFontPadding="false"
+                android:text="*真实图片更方便平台审核" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x2"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginRight="@dimen/x30"
+                android:background="@color/line_f2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/x30"
+                android:paddingTop="@dimen/x35"
+                android:paddingRight="@dimen/x30"
+                android:paddingBottom="@dimen/x15">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:includeFontPadding="false"
+                    android:text="联系电话"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize23" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/myapply_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="请输入联系电话"
+                android:includeFontPadding="false"
+                android:paddingLeft="@dimen/x30"
+                android:paddingTop="@dimen/x15"
+                android:paddingRight="@dimen/x30"
+                android:paddingBottom="@dimen/x18"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_black_cc"
+                android:textSize="@dimen/textSize27" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x2"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginRight="@dimen/x30"
+                android:background="@color/line_f2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/x30"
+                android:paddingTop="@dimen/x35"
+                android:paddingRight="@dimen/x30"
+                android:paddingBottom="@dimen/x15">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:includeFontPadding="false"
+                    android:text="申购说明"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize23" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/myapply_reason"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y264"
+                android:layout_margin="@dimen/x30"
+                android:background="@drawable/rect_cc_kuang"
+                android:gravity="left|top"
+                android:hint="请输入说明..."
+                android:includeFontPadding="false"
+                android:padding="@dimen/x15"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_black_cc"
+                android:textSize="@dimen/textSize27" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/myapply_commit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x85"
+        android:textSize="@dimen/x31"
+        android:textColor="@color/white"
+        android:background="@color/text_black_0f"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="提交申购单"/>
+
+
+</LinearLayout>
