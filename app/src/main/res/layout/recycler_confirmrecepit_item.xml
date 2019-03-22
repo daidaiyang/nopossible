@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@drawable/rect_circle_x10_white"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/item_img"
+        android:layout_width="@dimen/x65"
+        android:layout_height="@dimen/y65"
+        android:layout_marginLeft="@dimen/x23"
+        android:layout_marginTop="@dimen/x23"
+        android:src="@color/colorPrimary"/>
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textSize23"
+        android:textColor="@color/text_black"
+        android:layout_marginLeft="@dimen/x105"
+        android:layout_marginRight="@dimen/x35"
+        android:layout_marginTop="@dimen/x27"
+        android:includeFontPadding="false"
+        android:text="克莉娜橄榄油3L家庭装炒菜食用油西班牙原油进口..."/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x105"
+        android:layout_marginTop="@dimen/y60"
+        android:layout_marginRight="@dimen/x35"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="@dimen/x19"
+            android:gravity="center"
+            android:background="@drawable/rect_circle_x4_0f_kuang">
+
+            <TextView
+                android:id="@+id/item_order_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x8"
+                android:layout_marginRight="@dimen/x8"
+                android:layout_marginTop="@dimen/x4"
+                android:layout_marginBottom="@dimen/x2"
+                android:textSize="@dimen/x19"
+                android:includeFontPadding="false"
+                android:textColor="@color/text_black_0f"
+                android:text="下单8件"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="@dimen/x19"
+            android:gravity="center"
+            android:background="@drawable/rect_circle_x4_e6_kuang">
+
+            <TextView
+                android:id="@+id/item_fact_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x8"
+                android:layout_marginRight="@dimen/x8"
+                android:layout_marginTop="@dimen/x4"
+                android:layout_marginBottom="@dimen/x2"
+                android:textSize="@dimen/x19"
+                android:includeFontPadding="false"
+                android:textColor="@color/text_black_e6"
+                android:text="实际到货9件"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="@dimen/x19"
+            android:gravity="center"
+            android:background="@drawable/rect_circle_x4_ff33_kuang">
+
+            <TextView
+                android:id="@+id/item_duo_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x8"
+                android:layout_marginRight="@dimen/x8"
+                android:layout_marginTop="@dimen/x4"
+                android:layout_marginBottom="@dimen/x2"
+                android:textSize="@dimen/x19"
+                android:includeFontPadding="false"
+                android:textColor="@color/text_black_ff33"
+                android:text="多货1件"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -31,7 +31,9 @@
     <color name="text_black_69">#696969</color>
     <color name="text_black_cc">#cccccc</color>
     <color name="text_black_0f">#F5AA0F</color>
+    <color name="text_black_e6">#1B61E6</color>
     <color name="text_black_99">#999999</color>
+    <color name="text_black_ff33">#FF3333</color>
     <color name="text_black_b4">#0DCFB4</color>
     <color name="text_price">#FF0000</color>
     <color name="text_price0c">#F54E0C</color>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.nopossible.R;
 import com.nopossible.adapter.ConfirmreceiptLeftAdapter;
 import com.nopossible.adapter.ConfirmreceiptRightAdapter;
+import com.nopossible.dialog.ConfirmRecepitDialog;
 import com.nopossible.mvp.MVPBaseActivity;
 
 import java.util.ArrayList;
@@ -53,6 +54,8 @@ public class ConfirmreceiptActivity extends MVPBaseActivity<ConfirmreceiptContra
     private ConfirmreceiptRightAdapter mRightAdapter;
     private ConfirmreceiptLeftAdapter mLeftAdapter;
 
+    private ConfirmRecepitDialog mDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +80,9 @@ public class ConfirmreceiptActivity extends MVPBaseActivity<ConfirmreceiptContra
         confirmrecepitRightRecy.setLayoutManager(new LinearLayoutManager(getContext()));
         confirmrecepitLeftRecy.setAdapter(mLeftAdapter);
         confirmrecepitRightRecy.setAdapter(mRightAdapter);
+        if (mDialog == null){
+            mDialog = new ConfirmRecepitDialog(getContext());
+        }
 
     }
 
@@ -86,6 +92,7 @@ public class ConfirmreceiptActivity extends MVPBaseActivity<ConfirmreceiptContra
             case R.id.title_back:
                 break;
             case R.id.confirmrecepit_get:
+                mDialog.show();
                 break;
         }
     }

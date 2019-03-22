@@ -54,4 +54,6 @@ dependencies {
     implementation project(path: ':rxretrofitlibrary')
     //图片选择
     implementation 'com.github.YancyYe:GalleryPick:1.2.1'
+    //二级展开的recycler
+    implementation 'com.hgDendi:expandable-recyclerview-adapter:1.0.1'
 }
