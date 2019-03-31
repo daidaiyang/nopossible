@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.nopossible.R;
 import com.nopossible.activities.gooddetail.GooddetailActivity;
+import com.nopossible.activities.onekeysaveorder.OnekeysaveorderActivity;
 import com.nopossible.adapter.SearchGoodItemAdapter;
 import com.nopossible.customview.CircleImageView;
 import com.nopossible.customview.WaveView;
@@ -211,6 +212,9 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
             case R.id.first_function_scan:
                 break;
             case R.id.first_function_order:
+                Intent intent = new Intent(getContext(), OnekeysaveorderActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
             case R.id.first_result_icon:
                 break;
