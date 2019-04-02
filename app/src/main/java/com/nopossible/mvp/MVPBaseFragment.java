@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.ygs.rxretrofitlibrary.retrofit_rx.http.HttpManager;
 
@@ -18,11 +19,14 @@ import java.lang.reflect.ParameterizedType;
 public abstract class MVPBaseFragment<V extends BaseView,T extends BasePresenterImpl<V>> extends Fragment implements BaseView{
     public T mPresenter;
     private HttpManager manager = HttpManager.getInstance();
+
+    public RxPermissions rxPermissions;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter= getInstance(this,1);
         mPresenter.attachView((V) this);
+        rxPermissions = new RxPermissions(getActivity());
     }
 
     @Override

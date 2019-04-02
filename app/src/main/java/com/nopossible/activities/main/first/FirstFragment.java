@@ -1,11 +1,13 @@
 package com.nopossible.activities.main.first;
 
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -32,7 +34,10 @@ import com.nopossible.customview.CircleImageView;
 import com.nopossible.customview.WaveView;
 import com.nopossible.dialog.RecognitionDialog;
 import com.nopossible.mvp.MVPBaseFragment;
+import com.nopossible.utils.LogUtil;
 import com.nopossible.utils.RecycleViewDivider;
+import com.nopossible.utils.ToastUtil;
+import com.nopossible.zxing.android.CaptureActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +49,9 @@ import butterknife.Unbinder;
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
+import io.reactivex.functions.Consumer;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * MVPPlugin
@@ -106,6 +114,7 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
 
     private long downTime;
     private RecognitionDialog dialog = null;
+    private static final int REQUEST_CODE_SCAN = 0x001;
 
 
     @Nullable
@@ -205,15 +214,40 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
         unbinder.unbind();
     }
 
-    @OnClick({R.id.first_function_scan, R.id.first_function_order, R.id.first_result_icon})
+    @OnClick({R.id.first_function_scan, R.id.first_function_order, R.id.first_result_icon,R.id.first_result_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.first_function_scan:
+                startScan();
                 break;
             case R.id.first_function_order:
                 break;
             case R.id.first_result_icon:
                 break;
+            case R.id.first_result_back:
+                firstSearchView.setVisibility(View.VISIBLE);
+                firstResultView.setVisibility(View.GONE);
+                break;
+        }
+    }
+
+    private void startScan(){
+        final Intent intentScan = new Intent(getContext(),CaptureActivity.class);
+        intentScan.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            rxPermissions.request(Manifest.permission.CAMERA)
+                    .subscribe(new Consumer<Boolean>() {
+                        @Override
+                        public void accept(Boolean aBoolean) throws Exception {
+                            if (aBoolean){
+                                startActivityForResult(intentScan,REQUEST_CODE_SCAN);
+                            }else {
+                                ToastUtil.showCenterToast(getContext(),"需要使用相机权限，请在设置中允许后继续");
+                            }
+                        }
+                    });
+        }else {
+            startActivityForResult(intentScan,REQUEST_CODE_SCAN);
         }
     }
 
@@ -263,5 +297,18 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
     @Override
     public void onAddCartClick(View v, int position) {
         Log.d("ssssssssssss","sssssssssssssssssssssss"+position);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //扫描二维码/条码回传
+        if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
+            if (data != null) {
+                String scanContext = data.getStringExtra("codedContent");
+                LogUtil.d("二维码扫描结果：", scanContext);
+                ToastUtil.showCenterToast(getContext(), scanContext);
+            }
+        }
     }
 }

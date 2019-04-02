@@ -28,7 +28,6 @@
         <activity android:name=".activities.main.MainActivity" />
         <activity android:name=".activities.gooddetail.GooddetailActivity"/>
         <activity android:name=".activities.login.LoginActivity">
-
         </activity>
         <activity android:name=".activities.register.RegisterActivity"/>
         <activity android:name=".activities.findpass.FindpassActivity"/>
@@ -45,6 +44,7 @@
         <activity android:name=".activities.minegroup.mysetting.MysettingActivity"/>
         <activity android:name=".activities.minegroup.mymessage.MymessageActivity"/>
         <activity android:name=".activities.confirmreceipt.ConfirmreceiptActivity"/>
+        <activity android:name=".zxing.android.CaptureActivity"/>
     </application>
 
 </manifest>
