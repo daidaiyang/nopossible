@@ -12,7 +12,9 @@ import com.nopossible.mvp.BaseView;
 
 public class RegisterContract {
     interface View extends BaseView {
-        
+        void setTimer(int leftTime);
+        void nextUi();
+        void registerSuccess();
     }
 
     interface  Presenter extends BasePresenter<View> {

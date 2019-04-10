@@ -4,6 +4,9 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.ygs.rxretrofitlibrary.retrofit_rx.exception.HttpTimeException;
 import com.ygs.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 import java.lang.ref.SoftReference;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import rx.Observable;
 import rx.functions.Func1;
@@ -23,7 +26,7 @@ public abstract class BaseApi<T> implements Func1<BaseResultEntity<T>, T> {
     /*是否需要缓存处理*/
     private boolean cache;
     /*基础url*/
-    private String baseUrl = "http://47.96.138.158:8081/v1/";
+    private String baseUrl = "http://121.43.169.100:8082/v1/";
     /*方法-如果需要缓存必须设置这个参数；不需要不用設置*/
     private String method="";
     /*超时时间-默认6秒*/
@@ -45,7 +48,8 @@ public abstract class BaseApi<T> implements Func1<BaseResultEntity<T>, T> {
         setListener(listener);
         setRxAppCompatActivity(rxAppCompatActivity);
         setShowProgress(true);
-        setCache(true);
+        setCancel(false);
+        setCache(false);
     }
 
     /**
@@ -187,6 +191,10 @@ public abstract class BaseApi<T> implements Func1<BaseResultEntity<T>, T> {
 
     public String getCacheUrl() {
         return cacheUrl;
+    }
+
+    public RequestBody getbody(String json){
+        return RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json);
     }
 
     public void setCacheUrl(String cacheUrl) {

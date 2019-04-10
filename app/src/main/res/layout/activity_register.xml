@@ -36,6 +36,9 @@
                 android:background="@drawable/rect_circle_x42_cc_kuang"
                 android:gravity="center_vertical"
                 android:hint="请输入手机号"
+                android:maxLength="11"
+                android:inputType="number"
+                android:singleLine="true"
                 android:paddingLeft="@dimen/x58"
                 android:textColorHint="@color/text_black_cc"
                 android:textSize="@dimen/textSize27" />
@@ -96,6 +99,7 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="请输入密码"
+                    android:inputType="textPassword"
                     android:paddingLeft="@dimen/x58"
                     android:textColorHint="@color/text_black_cc"
                     android:textSize="@dimen/textSize27" />
@@ -125,6 +129,7 @@
                     android:layout_height="@dimen/y84"
                     android:layout_weight="1"
                     android:background="@null"
+                    android:inputType="textPassword"
                     android:hint="请再次输入密码"
                     android:paddingLeft="@dimen/x58"
                     android:textColorHint="@color/text_black_cc"
@@ -210,6 +215,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

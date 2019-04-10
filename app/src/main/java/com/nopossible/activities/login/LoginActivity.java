@@ -4,6 +4,10 @@ package com.nopossible.activities.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -12,8 +16,11 @@ import android.widget.TextView;
 
 import com.nopossible.R;
 import com.nopossible.activities.findpass.FindpassActivity;
+import com.nopossible.activities.main.MainActivity;
 import com.nopossible.activities.register.RegisterActivity;
 import com.nopossible.mvp.MVPBaseActivity;
+import com.nopossible.utils.IntentUtil;
+import com.nopossible.utils.RegexUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,9 +64,12 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     private void initView() {
         titleTxt.setText("登录");
         titleRight.setVisibility(View.GONE);
+        loginLogin.setClickable(false);
+        loginPassword.setTransformationMethod(new PasswordTransformationMethod());
+        loginPassword.addTextChangedListener(watcher);
     }
 
-    @OnClick({R.id.title_back, R.id.login_login, R.id.login_regist, R.id.login_forgetpassword})
+    @OnClick({R.id.title_back, R.id.login_login, R.id.login_regist, R.id.login_forgetpassword,R.id.login_seepassword})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_back:
@@ -77,6 +87,43 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
                 Intent passIntent = new Intent(LoginActivity.this,FindpassActivity.class);
                 startActivity(passIntent);
                 break;
+            case R.id.login_seepassword:
+                if (loginSeepassword.isChecked()) {
+                    loginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    loginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+                break;
         }
     }
+
+
+    @Override
+    public void loginSuccess() {
+        IntentUtil.startActivity(this,MainActivity.class);
+        this.finish();
+    }
+
+    TextWatcher watcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length()>0&&RegexUtils.checkMobile(loginUsername.getText().toString())){
+                loginLogin.setClickable(true);
+                loginLogin.setBackgroundResource(R.drawable.rect_circle_x42_0f);
+            }else {
+                loginLogin.setClickable(false);
+                loginLogin.setBackgroundResource(R.drawable.rect_circle_x42_cc);
+            }
+        }
+    };
 }

@@ -3,7 +3,10 @@ package com.nopossible.activities.login;
 import android.util.Log;
 
 import com.nopossible.entity.api.UserLoginApi;
+import com.nopossible.entity.beans.UserLoginData;
 import com.nopossible.mvp.BasePresenterImpl;
+import com.nopossible.utils.LogUtil;
+import com.nopossible.utils.SpUtils;
 import com.ygs.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 
 import java.util.HashMap;
@@ -17,17 +20,19 @@ import java.util.Map;
 public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implements LoginContract.Presenter{
 
 
-    private HttpOnNextListener loginListener = new HttpOnNextListener<String>(){
-
-        @Override
-        public void onNext(String s) {
-            Log.d("lgin",s);
-        }
-    };
-
     public void login(String name, String password){
         UserLoginApi userLoginApi = new UserLoginApi(loginListener,mView.getThis());
-        userLoginApi.setParams("223456","13888888888","123456");
+        userLoginApi.setParams(name,password);
         mView.getManager().doHttpDeal(userLoginApi);
     }
+
+    private HttpOnNextListener loginListener = new HttpOnNextListener<UserLoginData>(){
+
+        @Override
+        public void onNext(UserLoginData userLoginData) {
+            LogUtil.d("UserLoginData",userLoginData.getUser().getToken());
+            SpUtils.putString(mView.getContext(),"token",userLoginData.getUser().getToken());
+            mView.loginSuccess();
+        }
+    };
 }

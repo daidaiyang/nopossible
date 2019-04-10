@@ -6,48 +6,40 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.ygs.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
 import com.ygs.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 
-import java.util.Map;
-
+import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import rx.Observable;
 
-public class UserLoginApi extends BaseApi {
+public class SecurityCodeApi extends BaseApi {
 
 
-    private UserLoginBean userLoginBean;
-
+    private SecurityBean securityBean;
     private RequestBody body;
 
-
-    public UserLoginApi(HttpOnNextListener listener, RxAppCompatActivity rxAppCompatActivity) {
+    public SecurityCodeApi(HttpOnNextListener listener, RxAppCompatActivity rxAppCompatActivity) {
         super(listener, rxAppCompatActivity);
-        setShowProgress(true);
-        setCancel(false);
-        setCache(false);
     }
 
-
-    public void setParams(String phone,String pwd) {
-        userLoginBean = new UserLoginBean(phone,pwd);
-        String json = new Gson().toJson(userLoginBean);
-        body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),json);
+    public void initData(String mobile,String code){
+        securityBean = new SecurityBean(mobile,code);
+        String json = new Gson().toJson(securityBean);
+        body = getbody(json);
     }
 
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpPostService postService = retrofit.create(HttpPostService.class);
-        return postService.userLogin(body);
+        return postService.SecurityCode(body);
     }
 
-
-    class UserLoginBean{
+    class SecurityBean{
         private String phone;
-        private String pwd;
+        private String code;
 
-        public UserLoginBean(String phone, String pwd) {
+        public SecurityBean(String phone, String code) {
             this.phone = phone;
-            this.pwd = pwd;
+            this.code = code;
         }
 
         public String getPhone() {
@@ -58,13 +50,12 @@ public class UserLoginApi extends BaseApi {
             this.phone = phone;
         }
 
-        public String getPwd() {
-            return pwd;
+        public String getCode() {
+            return code;
         }
 
-        public void setPwd(String pwd) {
-            this.pwd = pwd;
+        public void setCode(String code) {
+            this.code = code;
         }
     }
-
 }

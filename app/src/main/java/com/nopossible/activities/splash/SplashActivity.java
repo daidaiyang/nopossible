@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nopossible.R;
+import com.nopossible.activities.login.LoginActivity;
 import com.nopossible.activities.main.MainActivity;
 import com.nopossible.mvp.MVPBaseActivity;
 import com.nopossible.utils.SpUtils;
@@ -50,7 +51,7 @@ public class SplashActivity extends MVPBaseActivity<SplashContract.View, SplashP
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

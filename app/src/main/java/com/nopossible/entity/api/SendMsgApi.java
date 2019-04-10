@@ -6,48 +6,39 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.ygs.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
 import com.ygs.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 
-import java.util.Map;
-
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import rx.Observable;
 
-public class UserLoginApi extends BaseApi {
+public class SendMsgApi extends BaseApi {
 
-
-    private UserLoginBean userLoginBean;
-
+    private SendMsgBean sendMsgBean;
     private RequestBody body;
 
 
-    public UserLoginApi(HttpOnNextListener listener, RxAppCompatActivity rxAppCompatActivity) {
+    public SendMsgApi(HttpOnNextListener listener, RxAppCompatActivity rxAppCompatActivity) {
         super(listener, rxAppCompatActivity);
         setShowProgress(true);
         setCancel(false);
-        setCache(false);
     }
 
-
-    public void setParams(String phone,String pwd) {
-        userLoginBean = new UserLoginBean(phone,pwd);
-        String json = new Gson().toJson(userLoginBean);
-        body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),json);
+    public void initData(String phone){
+        sendMsgBean = new SendMsgBean(phone);
+        String toJson = new Gson().toJson(sendMsgBean);
+        body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),toJson);
     }
 
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpPostService postService = retrofit.create(HttpPostService.class);
-        return postService.userLogin(body);
+        return postService.sendMsg(body);
     }
 
-
-    class UserLoginBean{
+    class SendMsgBean{
         private String phone;
-        private String pwd;
 
-        public UserLoginBean(String phone, String pwd) {
+        public SendMsgBean(String phone) {
             this.phone = phone;
-            this.pwd = pwd;
         }
 
         public String getPhone() {
@@ -57,14 +48,5 @@ public class UserLoginApi extends BaseApi {
         public void setPhone(String phone) {
             this.phone = phone;
         }
-
-        public String getPwd() {
-            return pwd;
-        }
-
-        public void setPwd(String pwd) {
-            this.pwd = pwd;
-        }
     }
-
 }
