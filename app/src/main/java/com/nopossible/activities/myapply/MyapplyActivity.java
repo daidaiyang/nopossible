@@ -66,7 +66,6 @@ public class MyapplyActivity extends MVPBaseActivity<MyapplyContract.View, Myapp
     private MyApplyTypeDialog mDialog;
     private PicSelecterDialog mPicDialog;
 
-    private List<String> imgList;
 
     private GalleryConfig galleryConfig;
 
@@ -86,7 +85,6 @@ public class MyapplyActivity extends MVPBaseActivity<MyapplyContract.View, Myapp
         mPicDialog = new PicSelecterDialog(getContext());
         mPicDialog.setOnPicDialogClick(onPicClick);
         mData = new ArrayList<>();
-        imgList = new ArrayList<>();
         mImageAdapter = new MyApplyImageAdapter(getContext(), mData);
         myapplyRecy.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         myapplyRecy.setAdapter(mImageAdapter);
@@ -100,6 +98,7 @@ public class MyapplyActivity extends MVPBaseActivity<MyapplyContract.View, Myapp
                 MyapplyActivity.this.finish();
                 break;
             case R.id.myapply_commit:
+
                 break;
             case R.id.myapply_selectType:
                 mPresenter.getProductKindList();
@@ -172,7 +171,9 @@ public class MyapplyActivity extends MVPBaseActivity<MyapplyContract.View, Myapp
 
         @Override
         public void onSuccess(List<String> photoList) {
-            imgList = photoList;
+            mData.clear();
+            mData.addAll(photoList);
+            mImageAdapter.notifyDataSetChanged();
         }
 
         @Override

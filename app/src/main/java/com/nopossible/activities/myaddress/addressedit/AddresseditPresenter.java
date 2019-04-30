@@ -26,6 +26,12 @@ public class AddresseditPresenter extends BasePresenterImpl<AddresseditContract.
     }
 
 
+    public void saveAddress(MyAddressEventBean bean,String name,String tel){
+
+
+    }
+
+
     public void editArea(MyAddressEventBean bean){
         ModifyLocationApi modifyLocationApi = new ModifyLocationApi(modify,mView.getThis());
         modifyLocationApi.initData(bean);

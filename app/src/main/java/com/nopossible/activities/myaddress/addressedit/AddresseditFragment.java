@@ -138,7 +138,8 @@ public class AddresseditFragment extends MVPBaseFragment<AddresseditContract.Vie
         if (TextUtils.isEmpty(username)||TextUtils.isEmpty(tel)||TextUtils.isEmpty(addressInfo)){
             ToastUtil.showBottomToast("请填写完整的信息后继续");
         }else {
-
+            myAddressEventBean.setAddress(addressInfo);
+            mPresenter.saveAddress(myAddressEventBean,username,tel);
         }
     }
 

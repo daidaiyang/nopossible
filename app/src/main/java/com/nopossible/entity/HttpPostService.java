@@ -60,6 +60,11 @@ public interface HttpPostService {
     @POST("user/modify-location")
     Observable<BaseResultEntity<String>> modifyLocation(@Body RequestBody body);
 
+    //产品申购
+    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    @POST("product/subscribe")
+    Observable<BaseResultEntity<String>> productSubscribe(@Body RequestBody body);
+
 
 
 

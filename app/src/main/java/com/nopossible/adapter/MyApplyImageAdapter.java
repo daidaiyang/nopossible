@@ -48,7 +48,7 @@ public class MyApplyImageAdapter extends RecyclerView.Adapter {
                     .into(holder.myapplyItemImg);
         }else{
             Glide.with(mContext)
-                    .load(R.drawable.splash)
+                    .load(mData.get(i))
                     .into(holder.myapplyItemImg);
         }
 
