@@ -12,7 +12,7 @@ import com.nopossible.mvp.BaseView;
 
 public class MainContract {
     interface View extends BaseView {
-        
+        void exitApp();
     }
 
     interface  Presenter extends BasePresenter<View> {

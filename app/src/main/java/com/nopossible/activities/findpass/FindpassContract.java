@@ -12,7 +12,9 @@ import com.nopossible.mvp.BaseView;
 
 public class FindpassContract {
     interface View extends BaseView {
-        
+        void setTimer(int leftTime);
+        void nextUi();
+        void findSuccess();
     }
 
     interface  Presenter extends BasePresenter<View> {

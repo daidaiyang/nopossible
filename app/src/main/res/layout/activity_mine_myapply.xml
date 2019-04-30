@@ -1,74 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
     android:fitsSystemWindows="true"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
-    <include layout="@layout/include_title"/>
+    <include layout="@layout/include_title" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y170"
-        android:background="@color/text_black_0f"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/mine_myapply_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textSize42"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginLeft="@dimen/x24"
-            android:includeFontPadding="false"
-            android:layout_marginTop="@dimen/y35"
-            android:text="共0件"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x24"
-            android:layout_marginTop="@dimen/x20"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize27"
-            android:text="我申购的商品"/>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/bga"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:background="@color/back_ceb">
+        android:layout_weight="1">
 
-        <include
-            android:visibility="gone"
-            layout="@layout/include_empty"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:paddingTop="@dimen/x15"
-            android:paddingLeft="@dimen/x15"
-            android:paddingRight="@dimen/x15"
-            android:id="@+id/mine_myapply_recy"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y170"
+                android:background="@color/text_black_0f"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/mine_myapply_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x24"
+                    android:layout_marginTop="@dimen/y35"
+                    android:includeFontPadding="false"
+                    android:text="共0件"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize42"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x24"
+                    android:layout_marginTop="@dimen/x20"
+                    android:text="我申购的商品"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize27" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/back_ceb"
+                android:orientation="vertical">
+
+                <include
+                    layout="@layout/include_empty" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mine_myapply_recy"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="@dimen/x15"
+                    android:layout_marginRight="@dimen/x15"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
     <TextView
         android:id="@+id/mine_myapply_next"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x84"
         android:background="@color/text_black_0f"
-        android:textSize="@dimen/textSize31"
-        android:textColor="@color/white"
         android:gravity="center"
-        android:textStyle="bold"
-        android:text="继续申购"/>
-
+        android:text="继续申购"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textSize31"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

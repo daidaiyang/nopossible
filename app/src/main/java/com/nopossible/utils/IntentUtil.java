@@ -20,6 +20,13 @@ public class IntentUtil {
         Intent intent = new Intent(activity,c);
         activity.startActivity(intent);
     }
+
+    public static void startActivity(Context context,Class c,Bundle bundle){
+        Intent intent = new Intent(context,c);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
+    }
     public static void startActivity(Activity activity, Class c, Bundle bundle){
         Intent intent = new Intent(activity,c);
         intent.putExtras(bundle);

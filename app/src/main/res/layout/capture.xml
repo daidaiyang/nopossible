@@ -20,7 +20,7 @@
         android:layout_gravity="top"
         android:background="#99000000">
         
-        <ImageButton
+        <ImageView
             android:id="@+id/capture_imageview_back"
             android:layout_width="42dp"
             android:layout_height="42dp"

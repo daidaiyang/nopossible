@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 
 import com.nopossible.R;
+import com.nopossible.entity.beans.ProductKindBean;
 
 import java.util.List;
 
@@ -18,14 +19,14 @@ import butterknife.ButterKnife;
 public class MyApplyDialogCheckAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
-    private List<String> mData;
+    private List<ProductKindBean> mData;
     private OnItemClickListener onItemClick;
 
     public void setOnItemClick(OnItemClickListener onItemClick) {
         this.onItemClick = onItemClick;
     }
 
-    public MyApplyDialogCheckAdapter(Context mContext, List<String> mData) {
+    public MyApplyDialogCheckAdapter(Context mContext, List<ProductKindBean> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -39,6 +40,10 @@ public class MyApplyDialogCheckAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+            ViewHolder holder = (ViewHolder) viewHolder;
+        ProductKindBean productKindBean = mData.get(i);
+        holder.myapplyTypedialogCheck.setText(productKindBean.getName());
+        holder.myapplyTypedialogCheck.setTag(productKindBean.getCode());
 
     }
 

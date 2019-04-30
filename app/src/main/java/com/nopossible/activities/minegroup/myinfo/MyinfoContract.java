@@ -2,6 +2,7 @@ package com.nopossible.activities.minegroup.myinfo;
 
 import android.content.Context;
 
+import com.nopossible.entity.beans.UpLoadImagebean;
 import com.nopossible.mvp.BasePresenter;
 import com.nopossible.mvp.BaseView;
 
@@ -12,7 +13,7 @@ import com.nopossible.mvp.BaseView;
 
 public class MyinfoContract {
     interface View extends BaseView {
-        
+        void setSuccessImg(UpLoadImagebean bean);
     }
 
     interface  Presenter extends BasePresenter<View> {

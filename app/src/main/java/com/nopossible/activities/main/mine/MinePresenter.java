@@ -1,7 +1,9 @@
 package com.nopossible.activities.main.mine;
 
-import android.content.Context;
-
+import com.nopossible.entity.api.GetUserDetailApi;
+import com.nopossible.entity.beans.UserDetail;
+import com.nopossible.entity.beans.UserLoginData;
+import com.nopossible.http.listener.HttpOnNextListener;
 import com.nopossible.mvp.BasePresenterImpl;
 
 /**
@@ -10,5 +12,19 @@ import com.nopossible.mvp.BasePresenterImpl;
  */
 
 public class MinePresenter extends BasePresenterImpl<MineContract.View> implements MineContract.Presenter{
-    
+
+
+    public void getInfo(){
+        GetUserDetailApi getUserDetailApi = new GetUserDetailApi(getUser,mView.getThis());
+        mView.getManager().doHttpDeal(getUserDetailApi);
+    }
+
+
+    private HttpOnNextListener<UserLoginData> getUser = new HttpOnNextListener<UserLoginData>() {
+        @Override
+        public void onNext(UserLoginData userLoginData) {
+            UserDetail user_detail = userLoginData.getUser_detail();
+            mView.setUserData(user_detail);
+        }
+    };
 }

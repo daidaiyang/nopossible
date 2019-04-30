@@ -2,6 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/x15"
+    android:paddingRight="@dimen/x15"
+    android:paddingBottom="@dimen/x10"
+    android:paddingTop="@dimen/x10"
     android:id="@+id/root"
     android:background="@drawable/rect_circle_x19_white">
 

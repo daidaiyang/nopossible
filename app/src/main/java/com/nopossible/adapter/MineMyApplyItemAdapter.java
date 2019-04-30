@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.nopossible.R;
 import com.nopossible.customview.ShadowDrawable;
+import com.nopossible.entity.beans.MyApplyBean;
 
 import java.util.List;
 
@@ -21,15 +22,16 @@ import butterknife.ButterKnife;
 
 public class MineMyApplyItemAdapter extends RecyclerView.Adapter {
 
+
     private Context mContext;
-    private List<String> mData;
+    private List<MyApplyBean> mData;
     private OnItemClickListener onItemClickListener;
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public MineMyApplyItemAdapter(Context mContext, List<String> mData) {
+    public MineMyApplyItemAdapter(Context mContext, List<MyApplyBean> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -39,7 +41,7 @@ public class MineMyApplyItemAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_mine_myapply_item, viewGroup, false);
-        return new ViewHolder(view,onItemClickListener);
+        return new ViewHolder(view, onItemClickListener);
     }
 
     @Override
@@ -54,7 +56,7 @@ public class MineMyApplyItemAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mData == null?0:mData.size();
+        return mData == null ? 0 : mData.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -62,14 +64,16 @@ public class MineMyApplyItemAdapter extends RecyclerView.Adapter {
         ImageView myapplyImg;
         @BindView(R.id.myapply_title)
         TextView myapplyTitle;
-        @BindView(R.id.myapply_status)
-        TextView myapplyStatus;
+        @BindView(R.id.shen_info)
+        TextView shenInfo;
+        @BindView(R.id.shen_status)
+        TextView shenStatus;
         @BindView(R.id.myapply_search)
         LinearLayout myapplySearch;
 
         private OnItemClickListener onItemClickListener;
 
-        ViewHolder(View view,OnItemClickListener onItemClickListener) {
+        ViewHolder(View view, OnItemClickListener onItemClickListener) {
             super(view);
             ButterKnife.bind(this, view);
             this.onItemClickListener = onItemClickListener;
@@ -79,19 +83,21 @@ public class MineMyApplyItemAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.myapply_search:
-                        onItemClickListener.onSerachClick(v,getPosition());
+                    onItemClickListener.onSerachClick(v, getPosition());
                     break;
-                    default:
-                        onItemClickListener.onItemClick(v,getPosition());
-                        break;
+                default:
+                    onItemClickListener.onItemClick(v, getPosition());
+                    break;
             }
 
         }
     }
-    public interface OnItemClickListener{
-        void onItemClick(View v,int position);
-        void onSerachClick(View v,int position);
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position);
+
+        void onSerachClick(View v, int position);
     }
 }

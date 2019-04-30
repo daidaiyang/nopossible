@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nopossible.R;
+import com.nopossible.entity.beans.OrderLineBean;
+import com.nopossible.entity.beans.OrderLine_Product;
+import com.nopossible.utils.AppUtil;
 
 import java.util.List;
 
@@ -18,14 +22,14 @@ import butterknife.ButterKnife;
 
 public class ConfirmOrderItemAdapter extends RecyclerView.Adapter {
     private Context mContext;
-    private List<String> mData;
+    private List<OrderLineBean> mData;
     private OnItemClickListener onItemClickListener;
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public ConfirmOrderItemAdapter(Context mContext, List<String> mData) {
+    public ConfirmOrderItemAdapter(Context mContext, List<OrderLineBean> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -45,6 +49,14 @@ public class ConfirmOrderItemAdapter extends RecyclerView.Adapter {
             }else {
                 holder.confirmorderItemLine.setVisibility(View.VISIBLE);
             }
+        OrderLineBean orderLineBean = mData.get(i);
+        OrderLine_Product product = orderLineBean.getProduct();
+        Glide.with(mContext)
+                .load(product.getImages_list().get(0).getUrl())
+                .into(holder.confirmorderItemImg);
+        holder.confirmorderItemTitle.setText(product.getName());
+        holder.confirmorderItemPrice.setText("￥"+AppUtil.get2xiaoshu(product.getSell_price()));
+        holder.confirmorderItemNum.setText("x"+orderLineBean.getNum());
     }
 
     @Override

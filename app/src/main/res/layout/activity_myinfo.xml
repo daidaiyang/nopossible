@@ -14,6 +14,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/image_rl"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y96">
             <TextView
@@ -26,6 +27,7 @@
                 android:text="头像"/>
             
             <ImageView
+                android:id="@+id/image"
                 android:layout_width="@dimen/x65"
                 android:layout_height="@dimen/y65"
                 android:src="@color/colorPrimary"
@@ -42,6 +44,7 @@
             android:background="@color/line_f2"/>
 
         <RelativeLayout
+            android:id="@+id/nickname_rl"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y96">
             <TextView
@@ -54,6 +57,7 @@
                 android:text="昵称"/>
 
             <TextView
+                android:id="@+id/nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/textSize27"
@@ -80,6 +84,7 @@
             android:layout_marginRight="@dimen/x30"
             android:background="@color/line_f2"/>
         <RelativeLayout
+            android:id="@+id/changepass_rl"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y96">
             <TextView

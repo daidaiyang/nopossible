@@ -11,8 +11,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nopossible.R;
 import com.nopossible.customview.ShadowDrawable;
+import com.nopossible.entity.beans.ProductListBean;
+import com.nopossible.http.Api.BaseApi;
+import com.nopossible.utils.AppUtil;
 
 import java.util.List;
 
@@ -23,14 +27,14 @@ public class SearchGoodItemAdapter extends RecyclerView.Adapter {
 
 
     private Context mContext;
-    private List<String> mData;
+    private List<ProductListBean> mData;
     private OnItemClickListener mListener;
 
     public void setmListener(OnItemClickListener mListener) {
         this.mListener = mListener;
     }
 
-    public SearchGoodItemAdapter(Context mContext, List<String> mData) {
+    public SearchGoodItemAdapter(Context mContext, List<ProductListBean> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -45,11 +49,18 @@ public class SearchGoodItemAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder holder = (ViewHolder) viewHolder;
+        ProductListBean bean = mData.get(i);
         ShadowDrawable.setShadowDrawable(holder.root, Color.parseColor("#ffffff"),
                 (int) mContext.getResources().getDimension(R.dimen.x20),
                 Color.parseColor("#337C7C7C"),
                 (int) mContext.getResources().getDimension(R.dimen.x15),
                 0, 0);
+        Glide.with(mContext)
+                .load(bean.getImages_list().get(0).getUrl())
+                .into(holder.searchgoodItemGoodimg);
+        holder.searchgoodItemTitle.setText(bean.getName());
+        holder.searchgoodItemPrice.setText("￥"+AppUtil.get2xiaoshu(bean.getSell_price()));
+        holder.searchgoodItemStandar.setText(bean.getSpec());
 
     }
 

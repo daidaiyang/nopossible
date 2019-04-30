@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
@@ -50,7 +51,7 @@ public final class CaptureActivity extends BaseActivity implements
     // 声音、震动控制
     private BeepManager beepManager;
 
-    private ImageButton imageButton_back;
+    private ImageView imageButton_back;
 
     public ViewfinderView getViewfinderView() {
         return viewfinderView;
@@ -84,7 +85,7 @@ public final class CaptureActivity extends BaseActivity implements
         inactivityTimer = new InactivityTimer(this);
         beepManager = new BeepManager(this);
 
-        imageButton_back = (ImageButton) findViewById(R.id.capture_imageview_back);
+        imageButton_back = (ImageView) findViewById(R.id.capture_imageview_back);
         imageButton_back.setOnClickListener(new View.OnClickListener() {
 
             @Override

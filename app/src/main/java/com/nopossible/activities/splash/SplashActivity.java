@@ -12,6 +12,7 @@ import com.nopossible.R;
 import com.nopossible.activities.login.LoginActivity;
 import com.nopossible.activities.main.MainActivity;
 import com.nopossible.mvp.MVPBaseActivity;
+import com.nopossible.utils.IntentUtil;
 import com.nopossible.utils.SpUtils;
 
 import java.util.Timer;
@@ -43,16 +44,18 @@ public class SplashActivity extends MVPBaseActivity<SplashContract.View, SplashP
         Glide.with(this)
                 .load(R.drawable.splash)
                 .into(imageView);
-
         //创建Timer对象
         Timer timer = new Timer();
         //创建TimerTask对象
-
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
-                startActivity(intent);
+                String token = SpUtils.getString(getContext(), "token");
+                if (token==null||token.equals("")){
+                    IntentUtil.startActivity(SplashActivity.this,LoginActivity.class);
+                }else {
+                    IntentUtil.startActivity(SplashActivity.this,MainActivity.class);
+                }
                 finish();
             }
         };

@@ -46,7 +46,7 @@
             android:textStyle="bold"
             android:layout_marginTop="@dimen/x180"
             android:layout_marginLeft="@dimen/y150"
-            android:text="藤原豆腐店"/>
+            android:text=""/>
         <TextView
             android:id="@+id/mine_tel"
             android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
             android:layout_marginTop="@dimen/x250"
             android:includeFontPadding="false"
             android:layout_marginLeft="@dimen/y150"
-            android:text="18888888888"/>
+            android:text=""/>
 
         <ImageView
             android:layout_width="@dimen/x19"

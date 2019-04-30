@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
+
+    defaultConfig {
+        applicationId "com.iflytek.voicedemo"
+        minSdkVersion 9
+        targetSdkVersion 28
+
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    buildscript {
+        repositories {
+            jcenter()
+            google()
+        }
+        dependencies {
+            classpath 'com.android.tools.build:gradle:3.2.0'
+            //注意：更换成自己的AS的版本
+        }
+    }
+    allprojects {
+        repositories {
+            jcenter()
+            google()
+        }
+    }
+    allprojects {
+        repositories {
+            jcenter()
+            mavenCentral()
+        }
+    }
+
+}
+
+dependencies {
+    //compile project(':MscLibSrc')
+    implementation files('libs/Sunflower.jar')
+    implementation files('libs/Msc.jar')
+    implementation 'com.android.support:support-v4:28.+'
+}

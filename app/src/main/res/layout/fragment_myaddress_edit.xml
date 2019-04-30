@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/back_ceb"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_title"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:background="@color/white"
+        android:overScrollMode="never">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_height="@dimen/y84">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize27"
+                    android:layout_marginLeft="@dimen/x27"
+                    android:layout_centerVertical="true"
+                    android:text="收货人"/>
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|left"
+                    android:textSize="@dimen/textSize27"
+                    android:textColor="@color/text_black"
+                    android:background="@null"
+                    android:hint="姓名"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:layout_marginRight="@dimen/x27"
+                    android:layout_marginLeft="@dimen/x191"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/x1"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_height="@dimen/y84">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize27"
+                    android:layout_marginLeft="@dimen/x27"
+                    android:layout_centerVertical="true"
+                    android:text="手机号码"/>
+
+                <EditText
+                    android:id="@+id/phonenum"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|left"
+                    android:textSize="@dimen/textSize27"
+                    android:textColor="@color/text_black"
+                    android:background="@null"
+                    android:hint="11位手机号"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:inputType="number"
+                    android:layout_marginRight="@dimen/x27"
+                    android:layout_marginLeft="@dimen/x191"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/x1"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_height="@dimen/y84">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize27"
+                    android:layout_marginLeft="@dimen/x27"
+                    android:layout_centerVertical="true"
+                    android:text="所在地区"/>
+
+                <TextView
+                    android:id="@+id/area"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|left"
+                    android:textSize="@dimen/textSize27"
+                    android:textColor="@color/text_black"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:text="请选择"
+                    android:layout_marginRight="@dimen/x27"
+                    android:layout_marginLeft="@dimen/x191"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/x1"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_height="@dimen/y84">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize27"
+                    android:layout_marginLeft="@dimen/x27"
+                    android:layout_centerVertical="true"
+                    android:text="详细地址"/>
+
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|left"
+                    android:textSize="@dimen/textSize27"
+                    android:textColor="@color/text_black"
+                    android:background="@null"
+                    android:hint="街道门牌信息"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:inputType="number"
+                    android:layout_marginRight="@dimen/x27"
+                    android:layout_marginLeft="@dimen/x191"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="@dimen/x500"
+        android:layout_height="@dimen/y84"
+        android:layout_gravity="center_horizontal"
+        android:text="保存"
+        android:textSize="@dimen/textSize31"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/x77"
+        android:background="@drawable/rect_circle_x23_0c"/>
+
+</LinearLayout>

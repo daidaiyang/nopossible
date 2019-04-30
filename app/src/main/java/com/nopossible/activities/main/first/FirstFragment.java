@@ -1,20 +1,15 @@
 package com.nopossible.activities.main.first;
 
 
-import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -24,33 +19,39 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.iflytek.cloud.ErrorCode;
+import com.iflytek.cloud.InitListener;
+import com.iflytek.cloud.RecognizerListener;
+import com.iflytek.cloud.RecognizerResult;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechRecognizer;
+import com.iflytek.sunflower.FlowerCollector;
 import com.nopossible.R;
-import com.nopossible.activities.gooddetail.GooddetailActivity;
 import com.nopossible.activities.onekeysaveorder.OnekeysaveorderActivity;
-import com.nopossible.adapter.SearchGoodItemAdapter;
+import com.nopossible.activities.search.SearchActivity;
+import com.nopossible.activities.search.SearchResultBus;
 import com.nopossible.customview.CircleImageView;
 import com.nopossible.customview.WaveView;
 import com.nopossible.dialog.RecognitionDialog;
 import com.nopossible.mvp.MVPBaseFragment;
+import com.nopossible.utils.IntentUtil;
+import com.nopossible.utils.JsonParser;
 import com.nopossible.utils.LogUtil;
-import com.nopossible.utils.RecycleViewDivider;
 import com.nopossible.utils.ToastUtil;
-import com.nopossible.zxing.android.CaptureActivity;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
-import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
-import io.reactivex.functions.Consumer;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -59,9 +60,10 @@ import static android.app.Activity.RESULT_OK;
  * 邮箱 784787081@qq.com
  */
 
-public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPresenter> implements FirstContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, SearchGoodItemAdapter.OnItemClickListener {
+public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPresenter> implements FirstContract.View {
 
 
+    Unbinder unbinder;
     @BindView(R.id.first_location_icon)
     ImageView firstLocationIcon;
     @BindView(R.id.first_location_txt)
@@ -74,6 +76,10 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
     ImageView firstRecordLowIcon;
     @BindView(R.id.first_record_icon)
     WaveView firstRecordIcon;
+    @BindView(R.id.first_record_circle)
+    CircleImageView firstRecordCircle;
+    @BindView(R.id.first_record_icon_img)
+    ImageView firstRecordIconImg;
     @BindView(R.id.first_function_scan_icon)
     ImageView firstFunctionScanIcon;
     @BindView(R.id.first_function_scan_txt)
@@ -86,37 +92,23 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
     TextView firstFunctionOrderTxt;
     @BindView(R.id.first_function_order)
     LinearLayout firstFunctionOrder;
-    @BindView(R.id.first_result_word)
-    TextView firstResultWord;
-    @BindView(R.id.first_result_word_long)
-    TextView firstResultWordLong;
-    @BindView(R.id.first_result_icon)
-    ImageView firstResultIcon;
-    @BindView(R.id.first_result)
-    RelativeLayout firstResult;
-    @BindView(R.id.first_bga_recycle)
-    RecyclerView firstBgaRecycle;
-    @BindView(R.id.first_bga)
-    BGARefreshLayout firstBga;
-    Unbinder unbinder;
-    @BindView(R.id.first_record_icon_img)
-    ImageView firstRecordIconImg;
-    @BindView(R.id.first_record_circle)
-    CircleImageView firstRecordCircle;
     @BindView(R.id.first_search_view)
     LinearLayout firstSearchView;
-    @BindView(R.id.first_result_view)
-    LinearLayout firstResultView;
 
-    private SearchGoodItemAdapter mAdapter;
-    private List<String> mData;
     private Animation animation = null;
     private Animator animationJump = null;
-
     private long downTime;
-    private RecognitionDialog dialog = null;
-    private static final int REQUEST_CODE_SCAN = 0x001;
-
+    public static final int REQUEST_CODE_SCAN = 0x001;
+    // 语音听写对象
+    private SpeechRecognizer mIat;
+    private static String TAG = FirstFragment.class.getSimpleName();
+    private StringBuffer buffer = new StringBuffer();
+    // 用HashMap存储听写结果
+    private HashMap<String, String> mIatResults = new LinkedHashMap<String, String>();
+    private String resultType = "json";
+    int ret = 0; // 函数调用返回值
+    public RecognitionDialog dialog = null;
+    private String mResult = "";
 
     @Nullable
     @Override
@@ -124,35 +116,19 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         unbinder = ButterKnife.bind(this, view);
         initView();
+        // 初始化识别无UI识别对象
+        // 使用SpeechRecognizer对象，可根据回调消息自定义界面；
+        mIat = SpeechRecognizer.createRecognizer(getActivity(), mInitListener);
         return view;
     }
 
+    /**
+     * 初始化layout
+     */
     private void initView() {
         animation = AnimationUtils.loadAnimation(getContext(), R.anim.image_scale);
         animationJump = AnimatorInflater.loadAnimator(getContext(), R.animator.heart_jump);
         animationJump.setTarget(firstRecordCircle);
-        firstBga.setDelegate(this);
-        // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
-        BGARefreshViewHolder refreshViewHolder = new BGANormalRefreshViewHolder(getContext(), true);
-        // 设置下拉刷新和上拉加载更多的风格
-        firstBga.setRefreshViewHolder(refreshViewHolder);
-        // 为了增加下拉刷新头部和加载更多的通用性，提供了以下可选配置选项  -------------START
-        // 设置正在加载更多时不显示加载更多控件
-        firstBga.setIsShowLoadingMoreView(false);
-        // 设置正在加载更多时的文本
-        refreshViewHolder.setLoadingMoreText("加载中...");
-        firstBgaRecycle.setLayoutManager(new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL, false));
-        firstBgaRecycle.addItemDecoration(new RecycleViewDivider(getContext(),
-                LinearLayoutManager.VERTICAL, (int) getContext().getResources().getDimension(R.dimen.x10),
-                getContext().getResources().getColor(R.color.first_back)));
-        mData = new ArrayList<>();
-        mData.add("");
-        mData.add("");
-        mData.add("");
-        mAdapter = new SearchGoodItemAdapter(getContext(), mData);
-        mAdapter.setmListener(this);
-        firstBgaRecycle.setAdapter(mAdapter);
         firstRecordIcon.setDuration(2000);
         firstRecordIcon.setInitialRadius(getContext().getResources().getDimension(R.dimen.x280) / 2.0f);
         firstRecordIcon.setMaxRadius(getContext().getResources().getDimension(R.dimen.x360) / 2.0f);
@@ -160,11 +136,67 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
         firstRecordIcon.setColor(Color.parseColor("#FEEE94"));
         firstRecordIcon.setInterpolator(new LinearOutSlowInInterpolator());
         firstRecordIcon.start();
-        firstRecordIconImg.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+        firstRecordIconImg.setOnTouchListener(touchLis);
+    }
+
+
+    private void toSearch(String result) {
+        Bundle bundle = new Bundle();
+        bundle.putString("key",result);
+        IntentUtil.startActivity(getContext(), SearchActivity.class,bundle);
+    }
+
+    /**
+     * 点击事件
+     *
+     * @param view
+     */
+    @OnClick({R.id.first_function_scan, R.id.first_function_order})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.first_function_scan:
+                mPresenter.startScan();
+                break;
+            case R.id.first_function_order:
+                Intent intent = new Intent(getContext(), OnekeysaveorderActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    public void startScan(Intent intentScan) {
+        startActivityForResult(intentScan, REQUEST_CODE_SCAN);
+    }
+
+
+    /**
+     * 录音按钮触摸事件
+     */
+    View.OnTouchListener touchLis = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (null == mIat) {
+                // 创建单例失败，与 21001 错误为同样原因，参考 http://bbs.xfyun.cn/forum.php?mod=viewthread&tid=9688
+                ToastUtil.showBottomToast("创建对象失败，请确认 libmsc.so 放置正确，且有调用 createUtility 进行初始化");
+            } else {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        // 移动数据分析，收集开始听写事件
+                        FlowerCollector.onEvent(getContext(), "iat_recognize");
+                        buffer.setLength(0);
+                        //清空内容
+                        mResult = "";
+                        mIatResults.clear();
+                        //设置参数
+                        mPresenter.setparam(mIat);
+                        ret = mIat.startListening(mRecognizerListener);
+                        if (ret != ErrorCode.SUCCESS) {
+                            ToastUtil.showBottomToast("听写失败,错误码：" + ret);
+                        } else {
+                            ToastUtil.showBottomToast("请开始说话…");
+                        }
+                        //动画
                         downTime = System.currentTimeMillis();
                         animation.setFillAfter(true);
                         firstRecordIconImg.startAnimation(animation);
@@ -179,24 +211,23 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
                         firstRecordIcon.start();
                         if (System.currentTimeMillis() - downTime > 500) {
                             showDialog();
-                            new Handler()
-                                    .postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            firstSearchView.setVisibility(View.GONE);
-                                            firstResultView.setVisibility(View.VISIBLE);
-                                            dialog.cancel();
-                                        }
-                                    }, 3000);
+                            mIat.stopListening();
+                        } else {
+                            mIat.cancel();
                         }
+                        toSearch("测试商品");
                         break;
                 }
-                return true;
             }
-        });
-    }
+            return true;
+        }
+    };
 
-    private void showDialog() {
+
+    /**
+     * 显示识别中弹框
+     */
+    public void showDialog() {
         if (dialog == null) {
             dialog = new RecognitionDialog(getContext());
         }
@@ -209,99 +240,97 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
         });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
-    @OnClick({R.id.first_function_scan, R.id.first_function_order, R.id.first_result_icon,R.id.first_result_back})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.first_function_scan:
-                startScan();
-                break;
-            case R.id.first_function_order:
-                Intent intent = new Intent(getContext(), OnekeysaveorderActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                break;
-            case R.id.first_result_icon:
-                break;
-            case R.id.first_result_back:
-                firstSearchView.setVisibility(View.VISIBLE);
-                firstResultView.setVisibility(View.GONE);
-                break;
-        }
-    }
+    /**
+     * 初始化监听器。
+     */
+    private InitListener mInitListener = new InitListener() {
 
-    private void startScan(){
-        final Intent intentScan = new Intent(getContext(),CaptureActivity.class);
-        intentScan.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            rxPermissions.request(Manifest.permission.CAMERA)
-                    .subscribe(new Consumer<Boolean>() {
-                        @Override
-                        public void accept(Boolean aBoolean) throws Exception {
-                            if (aBoolean){
-                                startActivityForResult(intentScan,REQUEST_CODE_SCAN);
-                            }else {
-                                ToastUtil.showCenterToast(getContext(),"需要使用相机权限，请在设置中允许后继续");
-                            }
-                        }
-                    });
-        }else {
-            startActivityForResult(intentScan,REQUEST_CODE_SCAN);
-        }
-    }
-
-    // 通过代码方式控制进入正在刷新状态。应用场景：某些应用在 activity 的 onStart 方法中调用，自动进入正在刷新状态获取最新数据
-    public void beginRefreshing() {
-        firstBga.beginRefreshing();
-    }
-
-    // 通过代码方式控制进入加载更多状态
-    public void beginLoadingMore() {
-        firstBga.beginLoadingMore();
-    }
-
-    //刷新
-    @Override
-    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                firstBga.endRefreshing();
+        @Override
+        public void onInit(int code) {
+            Log.d(TAG, "SpeechRecognizer init() code = " + code);
+            if (code != ErrorCode.SUCCESS) {
+                ToastUtil.showBottomToast("初始化失败，错误码：" + code);
             }
-        }, 3000);
+        }
+    };
 
-    }
+    /**
+     * 听写监听器。
+     */
+    private RecognizerListener mRecognizerListener = new RecognizerListener() {
 
-    //加载
-    @Override
-    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                firstBga.endLoadingMore();
+        @Override
+        public void onBeginOfSpeech() {
+            // 此回调表示：sdk内部录音机已经准备好了，用户可以开始语音输入
+            ToastUtil.showBottomToast("开始说话");
+        }
+
+        @Override
+        public void onError(SpeechError error) {
+            // Tips：
+            // 错误码：10118(您没有说话)，可能是录音机权限被禁，需要提示用户打开应用的录音权限。
+            ToastUtil.showBottomToast(error.getPlainDescription(true));
+        }
+
+        @Override
+        public void onEndOfSpeech() {
+            // 此回调表示：检测到了语音的尾端点，已经进入识别过程，不再接受语音输入
+            ToastUtil.showBottomToast("结束说话");
+        }
+
+        @Override
+        public void onResult(RecognizerResult results, boolean isLast) {
+            Log.d(TAG, results.getResultString());
+            if (resultType.equals("json")) {
+                printResult(results);
             }
-        }, 3000);
+            dialog.cancel();
+        }
 
-        return true;
+        @Override
+        public void onVolumeChanged(int volume, byte[] data) {
+            Log.d(TAG, "返回音频数据：" + data.length);
+        }
+
+        @Override
+        public void onEvent(int eventType, int arg1, int arg2, Bundle obj) {
+            // 以下代码用于获取与云端的会话id，当业务出错时将会话id提供给技术支持人员，可用于查询会话日志，定位出错原因
+            // 若使用本地能力，会话id为null
+            //	if (SpeechEvent.EVENT_SESSION_ID == eventType) {
+            //		String sid = obj.getString(SpeechEvent.KEY_EVENT_SESSION_ID);
+            //		Log.d(TAG, "session id =" + sid);
+            //	}
+        }
+    };
+
+    /**
+     * 识别结果
+     *
+     * @param results
+     */
+    private void printResult(RecognizerResult results) {
+        String text = JsonParser.parseIatResult(results.getResultString());
+
+        String sn = null;
+        // 读取json结果中的sn字段
+        try {
+            JSONObject resultJson = new JSONObject(results.getResultString());
+            sn = resultJson.optString("sn");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mIatResults.put(sn, text);
+
+        StringBuffer resultBuffer = new StringBuffer();
+        for (String key : mIatResults.keySet()) {
+            resultBuffer.append(mIatResults.get(key));
+        }
+
+        mResult = resultBuffer.toString();
     }
 
-    @Override
-    public void onItemClick(View v, int position) {
-        Intent intent = new Intent(getContext(),GooddetailActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onAddCartClick(View v, int position) {
-        Log.d("ssssssssssss","sssssssssssssssssssssss"+position);
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -314,5 +343,12 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
                 ToastUtil.showCenterToast(getContext(), scanContext);
             }
         }
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

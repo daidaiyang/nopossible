@@ -5,10 +5,10 @@ import android.content.Context;
 import com.nopossible.entity.api.SecurityCodeApi;
 import com.nopossible.entity.api.SendMsgApi;
 import com.nopossible.entity.api.UserEnrollApi;
+import com.nopossible.http.listener.HttpOnNextListener;
 import com.nopossible.mvp.BasePresenterImpl;
 import com.nopossible.utils.LogUtil;
 import com.nopossible.utils.VerificationCountDownTimer;
-import com.ygs.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 
 /**
  * MVPPlugin

@@ -1,6 +1,9 @@
 package com.nopossible.entity.beans;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private static final long serialVersionUID = 188685165816081395L;
     private String id;
     private int type;
     private String phone;

@@ -11,8 +11,8 @@
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y238"
-        android:layout_marginLeft="@dimen/x19"
-        android:layout_marginRight="@dimen/x19"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
         android:orientation="horizontal">
 
         <ImageView
@@ -20,6 +20,7 @@
             android:layout_width="@dimen/x161"
             android:layout_height="@dimen/x161"
             android:layout_centerVertical="true"
+            android:scaleType="fitXY"
             android:layout_marginLeft="@dimen/x29" />
 
         <TextView
@@ -71,11 +72,11 @@
 
         <ImageView
             android:id="@+id/searchgood_item_addcart"
-            android:layout_width="@dimen/x84"
+            android:layout_width="@dimen/x94"
             android:layout_height="@dimen/x99"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:paddingRight="@dimen/x29"
+            android:paddingRight="@dimen/x39"
             android:paddingBottom="@dimen/y44"
             android:paddingTop="@dimen/x20"
             android:paddingLeft="@dimen/x20"

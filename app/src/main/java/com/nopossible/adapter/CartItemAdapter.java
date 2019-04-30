@@ -12,8 +12,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nopossible.R;
 import com.nopossible.customview.ShadowDrawable;
+import com.nopossible.entity.beans.ProductListBean;
+import com.nopossible.entity.beans.ShopCarProductBean;
+import com.nopossible.utils.AppUtil;
 
 import java.util.List;
 
@@ -22,14 +26,14 @@ import butterknife.ButterKnife;
 
 public class CartItemAdapter extends RecyclerView.Adapter {
     private Context mContext;
-    private List<String> mData;
+    private List<ShopCarProductBean> mData;
     private OnItemClickListener onItemClick;
 
     public void setOnItemClick(OnItemClickListener onItemClick) {
         this.onItemClick = onItemClick;
     }
 
-    public CartItemAdapter(Context mContext, List<String> mData) {
+    public CartItemAdapter(Context mContext, List<ShopCarProductBean> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -44,11 +48,33 @@ public class CartItemAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder holder = (ViewHolder) viewHolder;
+        ShopCarProductBean bean = mData.get(i);
+        ProductListBean product = bean.getProduct();
         ShadowDrawable.setShadowDrawable(holder.root, Color.parseColor("#ffffff"),
                 (int) mContext.getResources().getDimension(R.dimen.x20),
                 Color.parseColor("#337C7C7C"),
                 (int) mContext.getResources().getDimension(R.dimen.x15),
                 0, 0);
+        String url ="";
+        try{
+             url = product.getImages_list().get(0).getUrl();
+        }catch (IndexOutOfBoundsException e){
+
+        }
+        Glide.with(mContext)
+                .load(url)
+                .into(holder.cartItemImg);
+        holder.cartItemTitle.setText(product.getName());
+        holder.cartItemPrice.setText("￥"+AppUtil.get2xiaoshu(product.getSell_price()));
+        double allPrice = bean.getNum() * Double.parseDouble(product.getSell_price());
+        holder.cartItemAllprice.setText(String.format("￥%s",AppUtil.get2xiaoshu(allPrice)));
+        holder.cartItemNum.setText(String.valueOf(bean.getNum()));
+        if (bean.isChecked()){
+            holder.cartItemCheck.setChecked(true);
+        }else {
+            holder.cartItemCheck.setChecked(false);
+        }
+
     }
 
     @Override

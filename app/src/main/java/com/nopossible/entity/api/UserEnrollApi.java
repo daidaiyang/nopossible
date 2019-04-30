@@ -2,9 +2,9 @@ package com.nopossible.entity.api;
 
 import com.google.gson.Gson;
 import com.nopossible.entity.HttpPostService;
+import com.nopossible.http.Api.BaseApi;
+import com.nopossible.http.listener.HttpOnNextListener;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-import com.ygs.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
-import com.ygs.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;

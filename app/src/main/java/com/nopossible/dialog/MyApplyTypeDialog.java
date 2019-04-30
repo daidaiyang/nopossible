@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.nopossible.R;
 import com.nopossible.adapter.MyApplyDialogCheckAdapter;
+import com.nopossible.entity.beans.ProductKindBean;
+import com.nopossible.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,22 @@ public class MyApplyTypeDialog extends Dialog {
     private Context mContext;
 
     private MyApplyDialogCheckAdapter mAdapter;
-    private List<String> mData;
+    private List<ProductKindBean> mData;
+
+    private OnDialogItemClickListener onDialogItemClickListener;
+
+    public void setOnDialogItemClickListener(OnDialogItemClickListener onDialogItemClickListener) {
+        this.onDialogItemClickListener = onDialogItemClickListener;
+    }
+
+    public void setmData(List<ProductKindBean> mData) {
+        this.mData = mData;
+        if (mAdapter != null){
+            this.mData.clear();
+            this.mData.addAll(mData);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
 
     public MyApplyTypeDialog(@NonNull Context context) {
         super(context, R.style.BottomDialogStyle);
@@ -52,12 +69,20 @@ public class MyApplyTypeDialog extends Dialog {
 
     private void initView() {
         dialogMyapplyRecy.setLayoutManager(new GridLayoutManager(mContext,4));
-        mData = new ArrayList<>();
-        mData.add(""); mData.add(""); mData.add(""); mData.add(""); mData.add(""); mData.add("");
-        mData.add(""); mData.add(""); mData.add(""); mData.add(""); mData.add(""); mData.add("");
         mAdapter = new MyApplyDialogCheckAdapter(mContext,mData);
         dialogMyapplyRecy.setAdapter(mAdapter);
+        mAdapter.setOnItemClick(onItemclick);
     }
+
+
+    private MyApplyDialogCheckAdapter.OnItemClickListener onItemclick = new MyApplyDialogCheckAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(View v, int position) {
+            if (onDialogItemClickListener !=null){
+                onDialogItemClickListener.onItemClick(v,mData.get(position).getCode(),mData.get(position).getName());
+            }
+        }
+    };
 
 
     @OnClick(R.id.dialog_myapply_close)
@@ -73,5 +98,9 @@ public class MyApplyTypeDialog extends Dialog {
         layoutParams.width= ViewGroup.LayoutParams.MATCH_PARENT;
         layoutParams.height= (int) mContext.getResources().getDimension(R.dimen.x450);
         getWindow().setAttributes(layoutParams);
+    }
+
+    public interface  OnDialogItemClickListener{
+        void onItemClick(View view,String code,String name);
     }
 }

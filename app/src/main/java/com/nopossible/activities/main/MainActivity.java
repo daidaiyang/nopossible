@@ -54,7 +54,12 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         init();
+        mPresenter.requestPermission();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void init() {
@@ -74,6 +79,11 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
 //                return true;
 //            }
 //        });
+    }
+
+    @Override
+    public void exitApp() {
+        MainActivity.this.finish();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

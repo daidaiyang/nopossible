@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@drawable/rect_circle_x19_white"
+    android:padding="@dimen/x15"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -28,15 +29,6 @@
         android:layout_marginRight="@dimen/x30"
         android:text="正宗重庆特产商用餐饮瓶装树上鲜餐厨花椒油"/>
 
-    <TextView
-        android:id="@+id/myapply_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/textSize23"
-        android:textColor="@color/text_black_b4"
-        android:layout_marginLeft="@dimen/x210"
-        android:layout_marginTop="@dimen/x134"
-        android:text="申购中"/>
 
     <LinearLayout
         android:id="@+id/myapply_search"
@@ -45,20 +37,25 @@
         android:orientation="horizontal"
         android:layout_marginRight="@dimen/x29"
         android:layout_marginLeft="@dimen/x210"
-        android:layout_marginTop="@dimen/x183"
+        android:layout_marginTop="@dimen/y152"
         android:gravity="center_vertical|right">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/textSize23"
-        android:textColor="@color/text_black_99"
-        android:text="查看同类优品"/>
-    
-    <ImageView
-        android:layout_width="@dimen/x20"
-        android:layout_height="@dimen/y20"
-        android:layout_marginLeft="@dimen/x15"
-        android:src="@drawable/jiantou_you"
-       />
+        <TextView
+            android:id="@+id/shen_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize23"
+            android:textColor="@color/text_black_66"
+            android:layout_marginRight="@dimen/x40"
+            android:text="已有324人同申"/>
+        
+        <TextView
+            android:id="@+id/shen_status"
+            android:layout_width="@dimen/x84"
+            android:layout_height="@dimen/x54"
+            android:background="@drawable/rect_circle_x27_0f"
+            android:textSize="@dimen/textSize27"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="已申"/>
     </LinearLayout>
 </RelativeLayout>

@@ -1,15 +1,19 @@
 package com.nopossible.mvp;
 
+import android.Manifest;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import com.nopossible.http.http.HttpManager;
+import com.nopossible.utils.ToastUtil;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-import com.ygs.rxretrofitlibrary.retrofit_rx.http.HttpManager;
 
 import java.lang.reflect.ParameterizedType;
+
+import io.reactivex.functions.Consumer;
 
 /**
  * MVPPlugin
@@ -18,7 +22,7 @@ import java.lang.reflect.ParameterizedType;
 
 public abstract class MVPBaseFragment<V extends BaseView,T extends BasePresenterImpl<V>> extends Fragment implements BaseView{
     public T mPresenter;
-    private HttpManager manager = HttpManager.getInstance();
+    public HttpManager manager = HttpManager.getInstance();
 
     public RxPermissions rxPermissions;
     @Override

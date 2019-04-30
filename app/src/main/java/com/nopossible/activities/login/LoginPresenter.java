@@ -4,13 +4,10 @@ import android.util.Log;
 
 import com.nopossible.entity.api.UserLoginApi;
 import com.nopossible.entity.beans.UserLoginData;
+import com.nopossible.http.listener.HttpOnNextListener;
 import com.nopossible.mvp.BasePresenterImpl;
 import com.nopossible.utils.LogUtil;
 import com.nopossible.utils.SpUtils;
-import com.ygs.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * MVPPlugin

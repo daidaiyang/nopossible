@@ -1,25 +1,66 @@
 package com.nopossible.entity.beans;
 
-public class UserDetail {
-    private String id;
-    private String sex;
-    private String nick_name;
-    private String real_name;
-    private String head_img_url;
-    private String province_no;
-    private String province_name;
-    private String city_no;
-    private String city_name;
-    private String district_no;
-    private String district_name;
-    private String address;
-    private String tel_phone;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+
+import java.io.Serializable;
+import org.greenrobot.greendao.annotation.Generated;
+
+@Entity
+public class UserDetail implements Serializable {
+    private static final long serialVersionUID = 2706250330175403793L;
+    @Id
+    private String id="";
+    private String sex="";
+    private String nick_name="";
+    private String real_name="";
+    private String head_img_url="";
+    private String province_no="";
+    private String province_name="";
+    private String city_no="";
+    private String city_name="";
+    private String district_no="";
+    private String district_name="";
+    private String address="";
+    private String tel_phone="";
     private int valid;
-    private String update_user;
+    private String update_user="";
     private long update_time;
-    private String create_user;
+    private String create_user="";
     private long create_time;
-    private String remark;
+    private String remark="";
+
+    @Generated(hash = 1927629241)
+    public UserDetail(String id, String sex, String nick_name, String real_name,
+            String head_img_url, String province_no, String province_name,
+            String city_no, String city_name, String district_no,
+            String district_name, String address, String tel_phone, int valid,
+            String update_user, long update_time, String create_user,
+            long create_time, String remark) {
+        this.id = id;
+        this.sex = sex;
+        this.nick_name = nick_name;
+        this.real_name = real_name;
+        this.head_img_url = head_img_url;
+        this.province_no = province_no;
+        this.province_name = province_name;
+        this.city_no = city_no;
+        this.city_name = city_name;
+        this.district_no = district_no;
+        this.district_name = district_name;
+        this.address = address;
+        this.tel_phone = tel_phone;
+        this.valid = valid;
+        this.update_user = update_user;
+        this.update_time = update_time;
+        this.create_user = create_user;
+        this.create_time = create_time;
+        this.remark = remark;
+    }
+
+    @Generated(hash = 1767819458)
+    public UserDetail() {
+    }
 
     public String getId() {
         return id;

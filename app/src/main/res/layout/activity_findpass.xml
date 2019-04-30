@@ -145,7 +145,7 @@
             android:layout_height="@dimen/y84"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/y676"
-            android:background="@drawable/rect_circle_x42_0f"
+            android:background="@drawable/rect_circle_x42_cc"
             android:gravity="center"
             android:text="下一步"
             android:textColor="@color/white"
