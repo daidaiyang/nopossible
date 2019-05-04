@@ -7,6 +7,7 @@ import android.os.Environment;
 import com.nopossible.MyApplication;
 import com.nopossible.R;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -92,5 +93,28 @@ public class BitmapUtils {
         isBm = new ByteArrayInputStream(baos.toByteArray());
         bitmap = BitmapFactory.decodeStream(isBm, null, newOpts);
         return compressImage(bitmap);//压缩好比例大小后再进行质量压缩
+    }
+
+
+    public static String saveBitMap(Bitmap map){
+        String fileName = System.currentTimeMillis()+".png";
+        String subFolrder = AppUtil.SAVE_REAL_PATH;
+        File folder = new File(subFolrder);
+        if (!folder.exists()){
+            folder.mkdirs();
+        }
+        File file = new File(subFolrder,fileName);
+        try {
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+            map.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            bos.flush();
+            bos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return file.getAbsolutePath();
     }
 }

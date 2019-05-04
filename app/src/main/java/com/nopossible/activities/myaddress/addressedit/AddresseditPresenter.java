@@ -26,8 +26,10 @@ public class AddresseditPresenter extends BasePresenterImpl<AddresseditContract.
     }
 
 
-    public void saveAddress(MyAddressEventBean bean,String name,String tel){
-
+    public void saveAddress(MyAddressEventBean bean){
+        ModifyLocationApi modifyLocationApi =  new ModifyLocationApi(modify,mView.getThis());
+        modifyLocationApi.initData(bean);
+        mView.getManager().doHttpDeal(modifyLocationApi);
 
     }
 
@@ -43,7 +45,7 @@ public class AddresseditPresenter extends BasePresenterImpl<AddresseditContract.
     private HttpOnNextListener<String> modify = new HttpOnNextListener<String>() {
         @Override
         public void onNext(String s) {
-
+            mView.saveFinish();
         }
     };
 

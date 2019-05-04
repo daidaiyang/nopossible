@@ -17,6 +17,7 @@ import com.nopossible.adapter.MyApplyImageAdapter;
 import com.nopossible.dialog.MyApplyTypeDialog;
 import com.nopossible.dialog.PicSelecterDialog;
 import com.nopossible.entity.beans.ProductKindBean;
+import com.nopossible.entity.beans.ProductSubScribeBean;
 import com.nopossible.mvp.MVPBaseActivity;
 import com.nopossible.utils.GlideImageLoader_gallery;
 import com.nopossible.utils.ToastUtil;
@@ -68,6 +69,7 @@ public class MyapplyActivity extends MVPBaseActivity<MyapplyContract.View, Myapp
 
 
     private GalleryConfig galleryConfig;
+    private String kindCode="";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,12 +100,23 @@ public class MyapplyActivity extends MVPBaseActivity<MyapplyContract.View, Myapp
                 MyapplyActivity.this.finish();
                 break;
             case R.id.myapply_commit:
-
+                commit();
                 break;
             case R.id.myapply_selectType:
                 mPresenter.getProductKindList();
                 break;
         }
+    }
+
+    private void commit(){
+        ProductSubScribeBean bean = new ProductSubScribeBean();
+        bean.setKind_code(kindCode);
+        bean.setKind_name(myapplyType.getText().toString());
+        bean.setNeed_kind_name(myapplyType.getText().toString());
+        bean.setBrand(myapplyBrand.getText().toString());
+        bean.setPhone(myapplyPhone.getText().toString());
+        bean.setContacts("");
+        mPresenter.upPic(bean,mData);
     }
 
     public void showSelect(List<ProductKindBean> list) {
@@ -149,6 +162,7 @@ public class MyapplyActivity extends MVPBaseActivity<MyapplyContract.View, Myapp
         @Override
         public void onItemClick(View view, String code, String name) {
             myapplyType.setText(name);
+            kindCode = code;
             mDialog.cancel();
         }
     };

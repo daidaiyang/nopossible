@@ -11,16 +11,25 @@ public class MyApplyBean implements Serializable {
     private String kind_name;
     private String need_kind_name;
     private String brand;
-    private String images;
+    private BaseImageList images;
     private String contacts;
     private String phone;
     private String remark;
+    private String total_user;
     private int valid;
     private String update_user;
     private long update_time;
     private String create_user;
     private long create_time;
 
+
+    public String getTotal_user() {
+        return total_user;
+    }
+
+    public void setTotal_user(String total_user) {
+        this.total_user = total_user;
+    }
 
     public String getId() {
         return id;
@@ -70,11 +79,11 @@ public class MyApplyBean implements Serializable {
         this.brand = brand;
     }
 
-    public String getImages() {
+    public BaseImageList getImages() {
         return images;
     }
 
-    public void setImages(String images) {
+    public void setImages(BaseImageList images) {
         this.images = images;
     }
 

@@ -12,7 +12,7 @@ import com.nopossible.mvp.BaseView;
 
 public class ConfirmorderContract {
     interface View extends BaseView {
-        
+        void payOrder();
     }
 
     interface  Presenter extends BasePresenter<View> {

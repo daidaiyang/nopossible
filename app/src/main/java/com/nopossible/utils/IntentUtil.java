@@ -34,4 +34,13 @@ public class IntentUtil {
     }
 
 
+    public static void startActivityFor(Activity activity, Class c, int requestCode){
+        Intent intent = new Intent(activity,c);
+        activity.startActivityForResult(intent,requestCode);
+    }
+
+
+
+
+
 }

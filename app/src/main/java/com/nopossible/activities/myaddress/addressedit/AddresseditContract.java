@@ -16,6 +16,7 @@ import java.util.List;
 public class AddresseditContract {
     interface View extends BaseView {
         void setAreaData(List<PrivinceBean> list);
+        void saveFinish();
     }
 
     interface  Presenter extends BasePresenter<View> {

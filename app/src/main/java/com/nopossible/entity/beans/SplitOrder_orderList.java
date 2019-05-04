@@ -10,7 +10,7 @@ public class SplitOrder_orderList implements Serializable {
     private String id;
     private String user_id;
     private String delivery_id;
-    private long no;
+    private String no;
     private String money;
     private String pay_money;
     private String pay_type;
@@ -68,11 +68,11 @@ public class SplitOrder_orderList implements Serializable {
         this.delivery_id = delivery_id;
     }
 
-    public long getNo() {
+    public String getNo() {
         return no;
     }
 
-    public void setNo(long no) {
+    public void setNo(String no) {
         this.no = no;
     }
 

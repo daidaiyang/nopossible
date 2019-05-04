@@ -33,6 +33,11 @@ public class ConfirmOrderOrderFenAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private List<SplitOrder_orderList> mData;
 
+    private OnItemClick onItemClick;
+    public void setOnItemClick(OnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
+
 
     public ConfirmOrderOrderFenAdapter(Context mContext, List<SplitOrder_orderList> mData) {
         this.mContext = mContext;
@@ -43,7 +48,7 @@ public class ConfirmOrderOrderFenAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_confirmorder_order_chaifen, viewGroup, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view,onItemClick);
     }
 
     @Override
@@ -85,7 +90,7 @@ public class ConfirmOrderOrderFenAdapter extends RecyclerView.Adapter {
         return mData == null ? 0 : mData.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.order_sendfee_img)
         ImageView orderSendfeeImg;
         @BindView(R.id.order_sendfee_info)
@@ -121,9 +126,32 @@ public class ConfirmOrderOrderFenAdapter extends RecyclerView.Adapter {
         @BindView(R.id.order_xiaoji)
         TextView orderXiaoji;
 
-        ViewHolder(View view) {
+        private OnItemClick onItemClick;
+
+        ViewHolder(View view,OnItemClick onItemClick) {
             super(view);
             ButterKnife.bind(this, view);
+            this.onItemClick = onItemClick;
+            selectDealerRl.setOnClickListener(this);
+            selectTimeRl.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            if (onItemClick !=null){
+                if (v.getId() == R.id.select_time_rl){
+                    onItemClick.onSelectTimeClick(v,getPosition());
+                }else if (v.getId() == R.id.select_dealer_rl){
+                    onItemClick.onPeisongSjClick(v,getPosition());
+                }
+            }
+        }
+    }
+
+
+    public interface OnItemClick{
+        void onPeisongSjClick(View view,int position);
+        void onSelectTimeClick(View view,int position);
+
     }
 }

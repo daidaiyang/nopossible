@@ -137,7 +137,6 @@
                     android:hint="街道门牌信息"
                     android:singleLine="true"
                     android:maxLines="1"
-                    android:inputType="number"
                     android:layout_marginRight="@dimen/x27"
                     android:layout_marginLeft="@dimen/x191"/>
             </RelativeLayout>

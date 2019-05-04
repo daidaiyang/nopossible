@@ -1,6 +1,7 @@
 package com.nopossible.utils;
 
 import android.content.Context;
+import android.os.Environment;
 
 import java.text.DecimalFormat;
 
@@ -8,6 +9,10 @@ public class AppUtil {
 
 
     public static final String BASEIMGURL = "http://file.bukenengtech.cn/";
+    private   static String SAVE_PIC_PATH = Environment.getExternalStorageState().equalsIgnoreCase(Environment.MEDIA_MOUNTED)
+            ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/mnt/sdcard";
+
+    public static  String SAVE_REAL_PATH = SAVE_PIC_PATH + "/nopossible/savePic";//保存的确
 
     //判断字符串中是否包含数字和字符
     public static boolean isLetterDigit(String str) {

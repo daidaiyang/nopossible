@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/back_ceb"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y96">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y94"
+        >
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/textSize31"
+            android:textColor="@color/text_black"
+            android:layout_marginLeft="@dimen/x38"
+            android:text="这个杂货店"/>
+
+        <TextView
+            android:id="@+id/name_type"
+            android:layout_width="@dimen/x96"
+            android:layout_height="@dimen/y27"
+            android:background="@drawable/rect_circle_x4_0f"
+            android:textSize="@dimen/x19"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/name"
+            android:layout_marginLeft="@dimen/x15"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:text="优质商家"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/name_type"
+            android:layout_marginLeft="@dimen/x76"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/textSize23"
+            android:textColor="@color/text_black"
+            android:text="1.5km"/>
+        
+        <RadioButton
+            android:id="@+id/radiobutton"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/y35"
+            android:button="@null"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x38"
+            android:background="@drawable/selector_checkbox_circle"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2"
+        android:background="@color/line_f2"/>
+</LinearLayout>

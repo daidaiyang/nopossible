@@ -215,7 +215,6 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
                         } else {
                             mIat.cancel();
                         }
-                        toSearch("测试商品");
                         break;
                 }
             }
@@ -236,6 +235,7 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
             @Override
             public void close() {
                 dialog.cancel();
+                mIat.stopListening();
             }
         });
     }
@@ -263,7 +263,7 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
         @Override
         public void onBeginOfSpeech() {
             // 此回调表示：sdk内部录音机已经准备好了，用户可以开始语音输入
-            ToastUtil.showBottomToast("开始说话");
+//            ToastUtil.showBottomToast("开始说话");
         }
 
         @Override
@@ -276,7 +276,7 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
         @Override
         public void onEndOfSpeech() {
             // 此回调表示：检测到了语音的尾端点，已经进入识别过程，不再接受语音输入
-            ToastUtil.showBottomToast("结束说话");
+//            ToastUtil.showBottomToast("结束说话");
         }
 
         @Override
@@ -329,6 +329,7 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
         }
 
         mResult = resultBuffer.toString();
+        toSearch(mResult);
     }
 
 

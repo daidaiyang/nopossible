@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.nopossible.MyApplication;
-import com.nopossible.http.download.DaoMaster;
-import com.nopossible.http.download.DaoSession;
+import com.nopossible.entity.beans.DaoMaster;
+import com.nopossible.entity.beans.DaoSession;
 import com.nopossible.http.download.DownInfo;
 import com.nopossible.http.download.DownInfoDao;
 

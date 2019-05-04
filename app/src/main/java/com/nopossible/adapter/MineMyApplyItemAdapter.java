@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nopossible.R;
 import com.nopossible.customview.ShadowDrawable;
 import com.nopossible.entity.beans.MyApplyBean;
@@ -47,11 +48,17 @@ public class MineMyApplyItemAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder holder = (ViewHolder) viewHolder;
+        MyApplyBean myApplyBean = mData.get(i);
         ShadowDrawable.setShadowDrawable(holder.itemView, Color.parseColor("#ffffff"),
                 (int) mContext.getResources().getDimension(R.dimen.x20),
                 Color.parseColor("#337C7C7C"),
                 (int) mContext.getResources().getDimension(R.dimen.x15),
                 0, 0);
+//        Glide.with(mContext)
+//                .load(myApplyBean.getImages().getUrl()==null)
+//                .into(holder.myapplyImg);
+        holder.myapplyTitle.setText(myApplyBean.getBrand());
+        holder.shenInfo.setText(String.format("已有%s人同申",myApplyBean.getTotal_user()==null?"0":myApplyBean.getTotal_user()));
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -16,12 +17,14 @@ import com.nopossible.activities.myaddress.MyAddressActivity;
 import com.nopossible.adapter.ConfirmOrderOrderFenAdapter;
 import com.nopossible.customview.ShadowDrawable;
 import com.nopossible.dialog.ConfirmPayDialog;
+import com.nopossible.dialog.PeisongDialog;
+import com.nopossible.entity.beans.MyAddressListBean;
 import com.nopossible.entity.beans.SplitOrderResultBean;
 import com.nopossible.entity.beans.SplitOrder_orderList;
 import com.nopossible.mvp.MVPBaseActivity;
 import com.nopossible.utils.AppUtil;
 import com.nopossible.utils.IntentUtil;
-import com.nopossible.utils.ToastUtil;
+import com.nopossible.utils.LogUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -70,8 +73,11 @@ public class ConfirmorderActivity extends MVPBaseActivity<ConfirmorderContract.V
     @BindView(R.id.confirmorder_address_rl_no)
     RelativeLayout addressRlNo;
 
-
+    private PeisongDialog mPeisongDialog = null;
     private ConfirmPayDialog mDialog = null;
+    private int REQUESTCODE = 0X0045641;
+
+    private MyAddressListBean beans;
 
 
     private ConfirmOrderOrderFenAdapter mAdapter;
@@ -90,6 +96,7 @@ public class ConfirmorderActivity extends MVPBaseActivity<ConfirmorderContract.V
         mData = new ArrayList<>();
         titleTxt.setText("确认下单");
         titleRight.setVisibility(View.GONE);
+        mPeisongDialog = new PeisongDialog(getContext());
         ShadowDrawable.setShadowDrawable(addressRl, Color.parseColor("#ffffff"),
                 (int) getResources().getDimension(R.dimen.x8),
                 Color.parseColor("#337C7C7C"),
@@ -101,6 +108,7 @@ public class ConfirmorderActivity extends MVPBaseActivity<ConfirmorderContract.V
                 (int) getResources().getDimension(R.dimen.x8),
                 0, 0);
         mAdapter = new ConfirmOrderOrderFenAdapter(getContext(), mData);
+        mAdapter.setOnItemClick(onClick);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         recycler.setNestedScrollingEnabled(false);
         recycler.setAdapter(mAdapter);
@@ -115,10 +123,10 @@ public class ConfirmorderActivity extends MVPBaseActivity<ConfirmorderContract.V
             mData.clear();
         }
         String address = bean.getOrder_list().get(0).getAddress();
-        if (address == null||address.equals("")){
+        if (address == null || address.equals("")) {
             addressRlNo.setVisibility(View.VISIBLE);
             addressRl.setVisibility(View.GONE);
-        }else {
+        } else {
             addressRl.setVisibility(View.VISIBLE);
             addressRlNo.setVisibility(View.GONE);
         }
@@ -132,23 +140,56 @@ public class ConfirmorderActivity extends MVPBaseActivity<ConfirmorderContract.V
         mAdapter.notifyDataSetChanged();
     }
 
-    @OnClick({R.id.title_back, R.id.confirmorder_commit,R.id.confirmorder_address_rl_no})
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMsgDeal(MyAddressListBean beans){
+        this.beans = beans;
+        addressRlNo.setVisibility(View.GONE);
+        addressRl.setVisibility(View.VISIBLE);
+        confirmorderName.setText(beans.getContacts());
+        confirmorderTel.setText(beans.getPhone());
+        confirmorderAddress.setText(beans.getProvince_name()+beans.getCity_name()+beans.getDistrict_name()+beans.getAddress());
+    }
+
+    @OnClick({R.id.title_back, R.id.confirmorder_commit, R.id.confirmorder_address_rl_no})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_back:
                 ConfirmorderActivity.this.finish();
                 break;
             case R.id.confirmorder_commit:
+                mPresenter.createOrder(beans,mData);
+                break;
+            case R.id.confirmorder_address_rl_no:
+                IntentUtil.startActivity(ConfirmorderActivity.this, MyAddressActivity.class);
+                break;
+        }
+    }
+
+    @Override
+    public void payOrder() {
                 if (mDialog == null) {
                     mDialog = new ConfirmPayDialog(getContext());
                 }
                 mDialog.show();
-                break;
-            case R.id.confirmorder_address_rl_no:
-                IntentUtil.startActivity(ConfirmorderActivity.this,MyAddressActivity.class);
-                break;
-        }
     }
+
+    private ConfirmOrderOrderFenAdapter.OnItemClick onClick = new ConfirmOrderOrderFenAdapter.OnItemClick() {
+        @Override
+        public void onPeisongSjClick(View view, int position) {
+            mPresenter.getMerchantList();
+//            if (mPeisongDialog == null){
+//                mPeisongDialog = new PeisongDialog(getContext());
+//            }
+//            mPeisongDialog.show();
+        }
+
+        @Override
+        public void onSelectTimeClick(View view, int position) {
+        }
+    };
+
+
 
     @Override
     protected void onDestroy() {

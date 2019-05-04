@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import com.nopossible.R;
 import com.nopossible.activities.myaddress.MyAddressEventBackBean;
+import com.nopossible.activities.myaddress.MyAddressEventBean;
 import com.nopossible.adapter.MyAddressListAdapter;
+import com.nopossible.entity.beans.MyAddressListBean;
 import com.nopossible.mvp.MVPBaseFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -55,7 +57,7 @@ public class AddresslistFragment extends MVPBaseFragment<AddresslistContract.Vie
     Unbinder unbinder;
 
     MyAddressListAdapter mAdapter;
-    private List<String> mData;
+    private List<MyAddressListBean> mData;
 
     @Nullable
     @Override
@@ -66,15 +68,29 @@ public class AddresslistFragment extends MVPBaseFragment<AddresslistContract.Vie
         return view;
     }
 
+
     private void initView() {
+        titleTxt.setText("地址列表");
         titleRight.setVisibility(View.GONE);
         empty.setVisibility(View.GONE);
-        mPresenter.getAddressList();
         mData = new ArrayList<>();
         mAdapter = new MyAddressListAdapter(mData,getContext());
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         recycler.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(onItemClick);
+    }
+
+    @Override
+    public void setListData(List<MyAddressListBean> list) {
+        mData.clear();
+        mData.addAll(list);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.getAddressList();
     }
 
     @Override
@@ -99,21 +115,36 @@ public class AddresslistFragment extends MVPBaseFragment<AddresslistContract.Vie
     private MyAddressListAdapter.OnItemClickListener onItemClick = new MyAddressListAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-
+            EventBus.getDefault().post(mData.get(position));
+            EventBus.getDefault().post(new MyAddressEventBackBean(0));
         }
 
         @Override
         public void onMorenClick(View view, int position) {
-
+            mPresenter.setMoren(mData.get(position).getId());
         }
 
         @Override
         public void onEditClick(View view, int position) {
+            MyAddressListBean myAddressListBean = mData.get(position);
+            MyAddressEventBean bean = new MyAddressEventBean();
+            bean.setId(myAddressListBean.getId());
+            bean.setProvince_name(myAddressListBean.getProvince_name());
+            bean.setProvince_no(myAddressListBean.getProvince_no());
+            bean.setCity_name(myAddressListBean.getCity_name());
+            bean.setCity_no(myAddressListBean.getCity_no());
+            bean.setDistrict_name(myAddressListBean.getDistrict_name());
+            bean.setDistrict_no(myAddressListBean.getDistrict_no());
+            bean.setAddress(myAddressListBean.getAddress());
+            bean.setContacts(myAddressListBean.getContacts());
+            bean.setPhone(myAddressListBean.getPhone());
+            EventBus.getDefault().postSticky(bean);
+            EventBus.getDefault().post(new MyAddressEventBackBean(2));
         }
 
         @Override
         public void onDeleteClick(View view, int posotion) {
-
+            mPresenter.delete(mData.get(posotion).getId());
         }
     };
 }

@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.nopossible.R;
+import com.nopossible.entity.beans.MyAddressListBean;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import butterknife.ButterKnife;
 
 public class MyAddressListAdapter extends RecyclerView.Adapter {
 
-    private List<String> mData;
+    private List<MyAddressListBean> mData;
     private Context mContext;
     private OnItemClickListener onItemClickListener;
 
@@ -28,7 +29,7 @@ public class MyAddressListAdapter extends RecyclerView.Adapter {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public MyAddressListAdapter(List<String> mData, Context mContext) {
+    public MyAddressListAdapter(List<MyAddressListBean> mData, Context mContext) {
         this.mData = mData;
         this.mContext = mContext;
     }
@@ -42,7 +43,16 @@ public class MyAddressListAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
+            ViewHolder holder = (ViewHolder) viewHolder;
+        MyAddressListBean myAddressListBean = mData.get(i);
+        holder.name.setText(myAddressListBean.getContacts());
+        holder.tel.setText(myAddressListBean.getPhone());
+        holder.address.setText(myAddressListBean.getProvince_name()+myAddressListBean.getCity_name()+myAddressListBean.getDistrict_name()+myAddressListBean.getAddress());
+        if (myAddressListBean.getHot()!=null&&myAddressListBean.getHot().equals("1")){
+            holder.morenCk.setChecked(true);
+        }else {
+            holder.morenCk.setChecked(false);
+        }
     }
 
     @Override

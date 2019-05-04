@@ -1,6 +1,8 @@
 package com.nopossible.entity.api;
 
+import com.google.gson.Gson;
 import com.nopossible.entity.HttpPostService;
+import com.nopossible.entity.beans.ProductSubScribeBean;
 import com.nopossible.http.Api.BaseApi;
 import com.nopossible.http.listener.HttpOnNextListener;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
@@ -20,8 +22,8 @@ public class ProductSubscribeaApi extends BaseApi {
     }
 
 
-    public void initData(){
-
+    public void initData(ProductSubScribeBean bean){
+       body =  getbody(new Gson().toJson(bean));
     }
 
     @Override

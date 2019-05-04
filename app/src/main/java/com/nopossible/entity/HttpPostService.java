@@ -55,7 +55,7 @@ public interface HttpPostService {
     @POST("order/split-shop-car-order")
     Observable<BaseResultEntity<SplitOrderResultBean>> splitShopCarOrder(@Body RequestBody body);
 
-    //拆分订单(从购物车选择产品拆分成订单)
+    //新增/修改用户地址
     @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
     @POST("user/modify-location")
     Observable<BaseResultEntity<String>> modifyLocation(@Body RequestBody body);
@@ -64,7 +64,14 @@ public interface HttpPostService {
     @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
     @POST("product/subscribe")
     Observable<BaseResultEntity<String>> productSubscribe(@Body RequestBody body);
-
+    //创建订单(从购物车选择产品创建订单/v1/order/create-shop-car-order
+    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    @POST("order/create-shop-car-order")
+    Observable<BaseResultEntity<SplitOrderResultBean>> createShopCarOrder(@Body RequestBody body);
+    ///v1/user/modify-default-location  设置默认地址
+    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    @POST("user/modify-default-location")
+    Observable<BaseResultEntity<String>> modifyDefaultLocation(@Body RequestBody body);
 
 
 

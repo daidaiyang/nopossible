@@ -14,8 +14,24 @@ public class MyAddressEventBean {
 
     private String address;
 
-    private String name;
-    private String telphone;
+    private String contacts;
+    private String phone;
+
+    public String getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(String contacts) {
+        this.contacts = contacts;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getProvince_name() {
         return province_name;

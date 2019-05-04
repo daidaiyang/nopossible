@@ -91,12 +91,12 @@ public class AddresseditFragment extends MVPBaseFragment<AddresseditContract.Vie
         mDialog.show();
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
     public void getEventMsg(MyAddressEventBean bean){
         myAddressEventBean = bean;
         if (bean!=null){
-            name.setText("");
-            phonenum.setText("");
+            name.setText(myAddressEventBean.getContacts());
+            phonenum.setText(myAddressEventBean.getPhone());
             area.setText(bean.getProvince_name()+","+bean.getCity_name()+","+bean.getDistrict_name());
             address.setText(bean.getAddress());
         }
@@ -132,15 +132,28 @@ public class AddresseditFragment extends MVPBaseFragment<AddresseditContract.Vie
     }
 
     private void saveAddress() {
-        String username = name.getText().toString();
+//        String username = name.getText().toString();
+        String username = "杨官帅";
         String tel = phonenum.getText().toString();
         String addressInfo = address.getText().toString();
         if (TextUtils.isEmpty(username)||TextUtils.isEmpty(tel)||TextUtils.isEmpty(addressInfo)){
             ToastUtil.showBottomToast("请填写完整的信息后继续");
         }else {
             myAddressEventBean.setAddress(addressInfo);
-            mPresenter.saveAddress(myAddressEventBean,username,tel);
+            myAddressEventBean.setPhone(tel);
+            myAddressEventBean.setContacts(username);
+            if (myAddressEventBean.getId()==null||myAddressEventBean.getId().equals("")){
+                mPresenter.saveAddress(myAddressEventBean);
+            }else {
+                mPresenter.editArea(myAddressEventBean);
+            }
+
         }
+    }
+
+    @Override
+    public void saveFinish() {
+        EventBus.getDefault().post(new MyAddressEventBackBean(1));
     }
 
     private AreaSelectDialog.OnAreaSelectListener areaClick = new AreaSelectDialog.OnAreaSelectListener() {
