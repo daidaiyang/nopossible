@@ -90,21 +90,21 @@ public class MineMyApplyItemAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.myapply_search:
-                    onItemClickListener.onSerachClick(v, getPosition());
-                    break;
-                default:
-                    onItemClickListener.onItemClick(v, getPosition());
-                    break;
+            if (onItemClickListener!=null){
+                switch (v.getId()) {
+                    case R.id.myapply_search:
+                        onItemClickListener.onSerachClick(v, getPosition());
+                        break;
+                    default:
+                        onItemClickListener.onItemClick(v, getPosition());
+                        break;
+                }
             }
-
         }
     }
 
     public interface OnItemClickListener {
         void onItemClick(View v, int position);
-
         void onSerachClick(View v, int position);
     }
 }

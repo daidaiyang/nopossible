@@ -87,6 +87,7 @@ public class MyapplyActivity extends MVPBaseActivity<MyapplyContract.View, Myapp
     }
 
 
+
     @Override
     public void setNoData() {
         empty.setVisibility(View.VISIBLE);
@@ -118,6 +119,7 @@ public class MyapplyActivity extends MVPBaseActivity<MyapplyContract.View, Myapp
                 break;
         }
     }
+
 
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
