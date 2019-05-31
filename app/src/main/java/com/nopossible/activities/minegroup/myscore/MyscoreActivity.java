@@ -77,6 +77,8 @@ public class MyscoreActivity extends MVPBaseActivity<MyscoreContract.View, Mysco
         mAdapter = new MyScoreItemAdapter(getContext(),mData);
         myscoreRecy.setLayoutManager(new LinearLayoutManager(getContext()));
         myscoreRecy.setAdapter(mAdapter);
+        mPresenter.getIntegralSum();
+        mPresenter.getIntegralList();
 
     }
 

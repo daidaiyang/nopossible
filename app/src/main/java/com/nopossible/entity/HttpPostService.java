@@ -2,6 +2,7 @@ package com.nopossible.entity;
 
 import com.nopossible.entity.beans.SplitOrderResultBean;
 import com.nopossible.entity.beans.UserLoginData;
+import com.nopossible.entity.beans.WeChatPayBean;
 import com.nopossible.http.Api.BaseResultEntity;
 
 import okhttp3.RequestBody;
@@ -68,10 +69,16 @@ public interface HttpPostService {
     @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
     @POST("order/create-shop-car-order")
     Observable<BaseResultEntity<SplitOrderResultBean>> createShopCarOrder(@Body RequestBody body);
+
     ///v1/user/modify-default-location  设置默认地址
     @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
     @POST("user/modify-default-location")
     Observable<BaseResultEntity<String>> modifyDefaultLocation(@Body RequestBody body);
+
+    //微信支付  /pay/wx/open/app-pay
+    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    @POST("pay/wx/open/app-pay")
+    Observable<BaseResultEntity<WeChatPayBean>> payWx(@Body RequestBody body);
 
 
 

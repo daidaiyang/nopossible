@@ -46,8 +46,15 @@ public interface HttpGetService {
     //获取符合拆单的商家列表   v1/user/merchant-user-list
     @GET("user/merchant-user-list")
     Observable<BaseResultEntity<List<String>>> getMerchantUserList();
-
+    //删除地址信息
     @GET("user/delete-location")
     Observable<BaseResultEntity<String>> deleteLocation(@QueryMap Map<String,Object> map);
 
+    //我的积分汇总
+    @GET("integral/integral-sum")
+    Observable<BaseResultEntity<String>> integralSum();
+
+    //我的积分列表
+    @GET("integral/integral-list")
+    Observable<BaseResultEntity<String>> integralList();
 }

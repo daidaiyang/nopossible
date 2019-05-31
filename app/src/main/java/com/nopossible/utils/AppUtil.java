@@ -14,6 +14,12 @@ public class AppUtil {
 
     public static  String SAVE_REAL_PATH = SAVE_PIC_PATH + "/nopossible/savePic";//保存的确
 
+
+
+    // 微信APP_ID 替换为你的应用从官方网站申请到的合法appID
+    public static final String APP_ID = "wx6a6e70d91a1f8987";
+
+
     //判断字符串中是否包含数字和字符
     public static boolean isLetterDigit(String str) {
         boolean isDigit = false;//定义一个boolean值，用来表示是否包含数字

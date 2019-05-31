@@ -23,8 +23,7 @@ public class MinePresenter extends BasePresenterImpl<MineContract.View> implemen
     private HttpOnNextListener<UserLoginData> getUser = new HttpOnNextListener<UserLoginData>() {
         @Override
         public void onNext(UserLoginData userLoginData) {
-            UserDetail user_detail = userLoginData.getUser_detail();
-            mView.setUserData(user_detail);
+            mView.setUserData(userLoginData);
         }
     };
 }

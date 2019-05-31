@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.PluralsRes;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nopossible.R;
+import com.nopossible.utils.AppUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,16 +37,36 @@ public class ConfirmPayDialog extends Dialog {
     @BindView(R.id.payNow)
     TextView payNow;
 
+
+    private String money="";
+
+    private OnDialogClickListener onDialogClickListener;
+
+    public void setOnDialogClickListener(OnDialogClickListener onDialogClickListener) {
+        this.onDialogClickListener = onDialogClickListener;
+    }
+
+    public void setMoney(String money) {
+        this.money = money;
+        if (price!=null){
+            price.setText(AppUtil.get2xiaoshu(money));
+        }
+    }
+
     public ConfirmPayDialog(@NonNull Context context) {
         super(context, R.style.BottomDialogStyle);
         setCanceledOnTouchOutside(true);
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_confirmpay);
         ButterKnife.bind(this);
+        price.setText(AppUtil.get2xiaoshu(money));
+
     }
 
     @OnClick({R.id.close, R.id.payWechat, R.id.payali, R.id.payNow})
@@ -62,9 +84,15 @@ public class ConfirmPayDialog extends Dialog {
                 payWechatCheck.setChecked(false);
                 break;
             case R.id.payNow:
+                if (onDialogClickListener!=null){
+                    int paytype = payaliCheck.isChecked()?0:1;
+                    onDialogClickListener.onPayClick(view,paytype,money);
+                }
                 break;
         }
     }
+
+
 
 
     @Override
@@ -75,5 +103,10 @@ public class ConfirmPayDialog extends Dialog {
         attributes.height = WindowManager.LayoutParams.WRAP_CONTENT;
         attributes.gravity = Gravity.BOTTOM;
         getWindow().setAttributes(attributes);
+    }
+
+
+    public interface OnDialogClickListener{
+        void onPayClick(View view,int payType,String money);
     }
 }

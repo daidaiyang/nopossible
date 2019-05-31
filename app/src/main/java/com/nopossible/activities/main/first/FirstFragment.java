@@ -271,12 +271,13 @@ public class FirstFragment extends MVPBaseFragment<FirstContract.View, FirstPres
             // Tips：
             // 错误码：10118(您没有说话)，可能是录音机权限被禁，需要提示用户打开应用的录音权限。
             ToastUtil.showBottomToast(error.getPlainDescription(true));
+            toSearch("测试");
         }
 
         @Override
         public void onEndOfSpeech() {
             // 此回调表示：检测到了语音的尾端点，已经进入识别过程，不再接受语音输入
-//            ToastUtil.showBottomToast("结束说话");
+            ToastUtil.showBottomToast("结束说话");
         }
 
         @Override

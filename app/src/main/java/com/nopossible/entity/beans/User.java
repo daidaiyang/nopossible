@@ -15,8 +15,17 @@ public class User implements Serializable {
     private long update_time;
     private String create_user;
     private long create_time;
+    private long integral;
     private long last_time;
     private String remark;
+
+    public long getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(long integral) {
+        this.integral = integral;
+    }
 
     public String getId() {
         return id;

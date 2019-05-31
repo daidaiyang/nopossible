@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.nopossible.R;
 import com.nopossible.activities.minegroup.myapply.MyapplyActivity;
 import com.nopossible.activities.minegroup.myinfo.MyinfoActivity;
@@ -21,6 +22,7 @@ import com.nopossible.activities.minegroup.myscore.MyscoreActivity;
 import com.nopossible.activities.minegroup.mysetting.MysettingActivity;
 import com.nopossible.activities.myaddress.MyAddressActivity;
 import com.nopossible.entity.beans.UserDetail;
+import com.nopossible.entity.beans.UserLoginData;
 import com.nopossible.mvp.MVPBaseFragment;
 import com.nopossible.utils.IntentUtil;
 import com.nopossible.utils.SpUtils;
@@ -84,13 +86,24 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
 
     @Override
-    public void setUserData(UserDetail userDetail) {
-        this.userDetail = userDetail;
-        Glide.with(getContext())
+    public void setUserData(UserLoginData userLoginData) {
+        this.userDetail = userLoginData.getUser_detail();
+        RequestOptions options = new RequestOptions();
+        options.placeholder(R.drawable.morenimg);
+        options.centerCrop();
+        Glide.with(this)
                 .load(userDetail.getHead_img_url())
+                .apply(options)
                 .into(mineImg);
-        mineName.setText(userDetail.getNick_name());
-        mineTel.setText(userDetail.getTel_phone());
+        String nickName = "";
+        if (userDetail.getNick_name()==null||userDetail.getNick_name().equals("")){
+            nickName = "您还没有设置昵称";
+        }else {
+            nickName = userDetail.getNick_name();
+        }
+        mineName.setText(nickName);
+        mineTel.setText(userLoginData.getUser().getPhone());
+        mineScoreNum.setText(userLoginData.getUser().getIntegral()+"分");
 
     }
 

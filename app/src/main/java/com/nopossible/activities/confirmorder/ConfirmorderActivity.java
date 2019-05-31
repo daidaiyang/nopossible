@@ -83,6 +83,8 @@ public class ConfirmorderActivity extends MVPBaseActivity<ConfirmorderContract.V
     private ConfirmOrderOrderFenAdapter mAdapter;
     private List<SplitOrder_orderList> mData;
 
+    private SplitOrderResultBean orderBean;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +99,8 @@ public class ConfirmorderActivity extends MVPBaseActivity<ConfirmorderContract.V
         titleTxt.setText("确认下单");
         titleRight.setVisibility(View.GONE);
         mPeisongDialog = new PeisongDialog(getContext());
+        mDialog = new ConfirmPayDialog(getContext());
+        mDialog.setOnDialogClickListener(onPayClick);
         ShadowDrawable.setShadowDrawable(addressRl, Color.parseColor("#ffffff"),
                 (int) getResources().getDimension(R.dimen.x8),
                 Color.parseColor("#337C7C7C"),
@@ -117,6 +121,7 @@ public class ConfirmorderActivity extends MVPBaseActivity<ConfirmorderContract.V
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void EventDataDeal(SplitOrderResultBean bean) {
+        orderBean = bean;
         if (mData == null) {
             mData = new ArrayList<>();
         } else {
@@ -167,10 +172,11 @@ public class ConfirmorderActivity extends MVPBaseActivity<ConfirmorderContract.V
     }
 
     @Override
-    public void payOrder() {
+    public void payOrder(SplitOrderResultBean money) {
                 if (mDialog == null) {
                     mDialog = new ConfirmPayDialog(getContext());
                 }
+                mDialog.setMoney(money.getTotal_money());
                 mDialog.show();
     }
 
@@ -189,6 +195,21 @@ public class ConfirmorderActivity extends MVPBaseActivity<ConfirmorderContract.V
         }
     };
 
+    private ConfirmPayDialog.OnDialogClickListener onPayClick = new ConfirmPayDialog.OnDialogClickListener() {
+        @Override
+        public void onPayClick(View view, int payType, String money) {
+            List<SplitOrder_orderList> order_list = orderBean.getOrder_list();
+            String order_no_list[] = new String[order_list.size()];
+            for (int i=0;i<order_list.size();i++){
+                order_no_list[i] = order_list.get(i).getNo();
+            }
+            if (payType == 0){//支付宝
+
+            }else if (payType == 1){//微信
+                mPresenter.payByWeChat(money,order_no_list);
+            }
+        }
+    };
 
 
     @Override
